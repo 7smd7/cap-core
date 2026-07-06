@@ -47,13 +47,15 @@ export function BookingWidget({ propertyName, price, propertyId }: BookingWidget
         </div>
       </div>
 
-      <SimulatedCheckout 
-        isOpen={isCheckoutOpen} 
-        onClose={() => setIsCheckoutOpen(false)} 
-        propertyName={propertyName}
-        price={price}
-        propertyId={propertyId}
-      />
+      {isCheckoutOpen && (
+        <div className="mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <SimulatedCheckout 
+            propertyName={propertyName}
+            price={price}
+            propertyId={propertyId}
+          />
+        </div>
+      )}
     </>
   );
 }

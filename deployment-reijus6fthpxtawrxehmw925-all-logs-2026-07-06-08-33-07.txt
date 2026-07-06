@@ -1,0 +1,276 @@
+2026-Jul-06 08:23:28.460915 Docker 29.2.0 with BuildKit and Buildx detected on deployment server (localhost).
+2026-Jul-06 08:23:28.475071 Starting deployment of 7smd7/cap-core:main to localhost.
+2026-Jul-06 08:23:29.019025 Preparing container with helper image: ghcr.io/coollabsio/coolify-helper:1.0.14
+2026-Jul-06 08:23:29.245529 [DEBUG] [CMD]: docker stop --time=30 reijus6fthpxtawrxehmw925
+2026-Jul-06 08:23:29.245529 [DEBUG] Flag --time has been deprecated, use --timeout instead
+2026-Jul-06 08:23:29.250757 [DEBUG] Error response from daemon: No such container: reijus6fthpxtawrxehmw925
+2026-Jul-06 08:23:29.524449 [DEBUG] [CMD]: docker run -d --network 'coolify' --name reijus6fthpxtawrxehmw925  --rm -v /root/.docker/buildx:/root/.docker/buildx -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/coollabsio/coolify-helper:1.0.14
+2026-Jul-06 08:23:29.524449 [DEBUG] f263688ff8205b8037d6dda37ef9d5653a692d44ed1b30481de7d0247c7cda55
+2026-Jul-06 08:23:32.501595 [DEBUG] [CMD]: docker exec reijus6fthpxtawrxehmw925 bash -c 'GIT_SSH_COMMAND="ssh -o ConnectTimeout=30 -p 22 -o Port=22 -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git ls-remote '\''https://github.com/7smd7/cap-core'\'' '\''refs/heads/main'\'''
+2026-Jul-06 08:<REDACTED>@\(.*\):#https://\1/#g" '\''/artifacts/reijus6fthpxtawrxehmw925'\''/.gitmodules || true && git -c http.version=HTTP/1.1 submodule sync && GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git -c http.version=HTTP/1.1 submodule update --init --recursive --depth=1; fi && cd '\''/artifacts/reijus6fthpxtawrxehmw925'\'' && GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git -c http.version=HTTP/1.1 lfs pull'
+2026-Jul-06 08:<REDACTED>@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+2026-Jul-06 08:23:48.446291 [DEBUG] #4 resolve ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 0.0s done
+2026-Jul-06 08:23:48.553496 [DEBUG] #4 sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 1.61kB / 1.61kB done
+2026-Jul-06 08:23:48.553496 [DEBUG] #4 sha256:98801a2e9c74b1236de01aa97bc99349f700f53f81d3bbab4411e2a8a9dd316d 1.06kB / 1.06kB done
+2026-Jul-06 08:23:48.553496 [DEBUG] #4 sha256:75908e6a244aa7c07bd16c59f1a88c832d0735edf545bd28f86d6bee4a5536a0 4.43kB / 4.43kB done
+2026-Jul-06 08:23:48.553496 [DEBUG] #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 0B / 29.72MB 0.1s
+2026-Jul-06 08:23:48.553496 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 0B / 33.30MB 0.1s
+2026-Jul-06 08:23:48.553496 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 0B / 75.95MB 0.1s
+2026-Jul-06 08:23:48.858210 [DEBUG] #4 ...
+2026-Jul-06 08:23:48.858210 [DEBUG] 
+2026-Jul-06 08:23:48.858210 [DEBUG] #5 [internal] load build context
+2026-Jul-06 08:23:48.858210 [DEBUG] #5 transferring context: 1.40MB 0.2s done
+2026-Jul-06 08:23:48.858210 [DEBUG] #5 DONE 0.3s
+2026-Jul-06 08:23:48.858210 [DEBUG] 
+2026-Jul-06 08:23:48.858210 [DEBUG] #4 [stage-0  1/11] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+2026-Jul-06 08:23:48.858210 [DEBUG] #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 6.29MB / 29.72MB 0.4s
+2026-Jul-06 08:23:49.095592 [DEBUG] #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 16.78MB / 29.72MB 0.6s
+2026-Jul-06 08:23:49.095592 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 3.15MB / 33.30MB 0.6s
+2026-Jul-06 08:23:49.188414 [DEBUG] #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 20.97MB / 29.72MB 0.7s
+2026-Jul-06 08:23:49.188414 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 5.24MB / 33.30MB 0.7s
+2026-Jul-06 08:23:49.338870 [DEBUG] #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 24.46MB / 29.72MB 0.8s
+2026-Jul-06 08:23:49.411288 [DEBUG] #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 28.23MB / 29.72MB 0.9s
+2026-Jul-06 08:23:49.411288 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 7.34MB / 33.30MB 0.9s
+2026-Jul-06 08:23:49.411288 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 4.14MB / 75.95MB 0.9s
+2026-Jul-06 08:23:49.577778 [DEBUG] #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 29.72MB / 29.72MB 1.1s done
+2026-Jul-06 08:23:49.577778 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 9.85MB / 33.30MB 1.1s
+2026-Jul-06 08:23:49.814565 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 13.63MB / 33.30MB 1.3s
+2026-Jul-06 08:23:49.814565 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 13.63MB / 75.95MB 1.3s
+2026-Jul-06 08:23:49.814565 [DEBUG] #4 sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 0B / 335B 1.3s
+2026-Jul-06 08:23:49.957924 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 15.73MB / 33.30MB 1.5s
+2026-Jul-06 08:23:49.957924 [DEBUG] #4 sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 335B / 335B 1.4s done
+2026-Jul-06 08:23:50.080881 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 17.83MB / 33.30MB 1.6s
+2026-Jul-06 08:23:50.080881 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 17.48MB / 75.95MB 1.6s
+2026-Jul-06 08:23:50.215605 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 19.92MB / 33.30MB 1.7s
+2026-Jul-06 08:23:50.407623 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 22.02MB / 33.30MB 1.9s
+2026-Jul-06 08:23:50.582410 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 24.12MB / 33.30MB 2.0s
+2026-Jul-06 08:23:50.582410 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 23.07MB / 75.95MB 2.0s
+2026-Jul-06 08:23:50.582410 [DEBUG] #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee
+2026-Jul-06 08:23:50.797308 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 26.21MB / 33.30MB 2.2s
+2026-Jul-06 08:23:50.969511 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 29.36MB / 33.30MB 2.5s
+2026-Jul-06 08:23:50.969511 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 29.36MB / 75.95MB 2.5s
+2026-Jul-06 08:23:51.114654 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 32.51MB / 33.30MB 2.6s
+2026-Jul-06 08:23:51.263765 [DEBUG] #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 33.30MB / 33.30MB 2.7s done
+2026-Jul-06 08:23:51.263765 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 33.55MB / 75.95MB 2.8s
+2026-Jul-06 08:23:51.619452 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 44.04MB / 75.95MB 3.1s
+2026-Jul-06 08:23:51.849134 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 48.23MB / 75.95MB 3.4s
+2026-Jul-06 08:23:53.075956 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 53.48MB / 75.95MB 4.6s
+2026-Jul-06 08:23:53.474516 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 61.87MB / 75.95MB 5.0s
+2026-Jul-06 08:23:53.790930 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 67.11MB / 75.95MB 5.3s
+2026-Jul-06 08:23:53.883471 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 71.83MB / 75.95MB 5.4s
+2026-Jul-06 08:23:54.048975 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 75.95MB / 75.95MB 5.6s
+2026-Jul-06 08:23:54.190205 [DEBUG] #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 75.95MB / 75.95MB 5.6s done
+2026-Jul-06 08:23:55.667410 [DEBUG] #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 5.1s
+2026-Jul-06 08:23:59.398586 [DEBUG] #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 8.8s done
+2026-Jul-06 08:24:04.385527 [DEBUG] #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913
+2026-Jul-06 08:24:10.001539 [DEBUG] #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 5.7s
+2026-Jul-06 08:24:15.416179 [DEBUG] #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 11.1s
+2026-Jul-06 08:24:15.771185 [DEBUG] #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 11.5s done
+2026-Jul-06 08:24:16.061548 [DEBUG] #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06
+2026-Jul-06 08:24:21.195130 [DEBUG] #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 5.1s
+2026-Jul-06 08:24:24.485646 [DEBUG] #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 8.4s done
+2026-Jul-06 08:24:24.671989 [DEBUG] #4 extracting sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518
+2026-Jul-06 08:24:24.822154 [DEBUG] #4 extracting sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 done
+2026-Jul-06 08:24:24.957043 [DEBUG] #4 DONE 36.6s
+2026-Jul-06 08:24:25.102032 [DEBUG] #6 [stage-0  2/11] WORKDIR /app/
+2026-Jul-06 08:24:25.102032 [DEBUG] #6 DONE 0.1s
+2026-Jul-06 08:24:25.327513 [DEBUG] #7 [stage-0  3/11] COPY .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix
+2026-Jul-06 08:24:25.327513 [DEBUG] #7 DONE 0.1s
+2026-Jul-06 08:24:25.327513 [DEBUG] 
+2026-Jul-06 08:24:25.327513 [DEBUG] #8 [stage-0  4/11] RUN nix-env -if .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix && nix-collect-garbage -d
+2026-Jul-06 08:24:25.877707 [DEBUG] #8 0.701 unpacking 'https://github.com/NixOS/nixpkgs/archive/ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.tar.gz' into the Git cache...
+2026-Jul-06 08:<REDACTED>@5.0.1',
+2026-Jul-06 08:27:47.140715 [DEBUG] #11 4.841 npm warn EBADENGINE   required: { node: '^20.19.0 || ^22.13.0 || >=24' },
+2026-Jul-06 08:27:47.140715 [DEBUG] #11 4.841 npm warn EBADENGINE   current: { node: 'v22.11.0', npm: '10.9.0' }
+2026-Jul-06 08:27:47.140715 [DEBUG] #11 4.841 npm warn EBADENGINE }
+2026-Jul-06 08:29:03.811637 [DEBUG] #11 81.30
+2026-Jul-06 08:29:03.811637 [DEBUG] #11 81.30 added 621 packages, and audited 622 packages in 1m
+2026-Jul-06 08:29:03.811637 [DEBUG] #11 81.30
+2026-Jul-06 08:29:03.811637 [DEBUG] #11 81.30 236 packages are looking for funding
+2026-Jul-06 08:29:03.811637 [DEBUG] #11 81.30   run `npm fund` for details
+2026-Jul-06 08:29:04.329020 [DEBUG] #11 81.46
+2026-Jul-06 08:29:04.329020 [DEBUG] #11 81.46 2 moderate severity vulnerabilities
+2026-Jul-06 08:29:04.329020 [DEBUG] #11 81.46
+2026-Jul-06 08:29:04.329020 [DEBUG] #11 81.46 To address all issues (including breaking changes), run:
+2026-Jul-06 08:29:04.329020 [DEBUG] #11 81.46   npm audit fix --force
+2026-Jul-06 08:29:04.329020 [DEBUG] #11 81.46
+2026-Jul-06 08:29:04.329020 [DEBUG] #11 81.46 Run `npm audit` for details.
+2026-Jul-06 08:29:04.365801 [DEBUG] #11 DONE 82.1s
+2026-Jul-06 08:29:04.590401 [DEBUG] #12 [stage-0  8/11] COPY . /app/.
+2026-Jul-06 08:29:06.215489 [DEBUG] #12 DONE 1.7s
+2026-Jul-06 08:29:06.332435 [DEBUG] #13 [stage-0  9/11] RUN --mount=type=cache,id=gayf8bex8si3qkhp1w3jbqta-next/cache,target=/app/.next/cache --mount=type=cache,id=gayf8bex8si3qkhp1w3jbqta-node_modules/cache,target=/app/node_modules/.cache npm run build
+2026-Jul-06 08:29:07.469487 [DEBUG] #13 1.138 npm warn config production Use `--omit=dev` instead.
+2026-Jul-06 08:29:07.700292 [DEBUG] #13 1.223
+2026-Jul-06 08:29:07.700292 [DEBUG] #13 1.223 > cap-app@0.1.0 build
+2026-Jul-06 08:29:07.700292 [DEBUG] #13 1.223 > next build
+2026-Jul-06 08:29:07.700292 [DEBUG] #13 1.223
+2026-Jul-06 08:29:10.075679 [DEBUG] #13 3.752 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2026-Jul-06 08:29:10.278499 [DEBUG] #13 3.754 This information is used to shape Next.js' roadmap and prioritize features.
+2026-Jul-06 08:29:10.278499 [DEBUG] #13 3.757 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2026-Jul-06 08:29:10.278499 [DEBUG] #13 3.757 https://nextjs.org/telemetry
+2026-Jul-06 08:<REDACTED>@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+2026-Jul-06 08:30:32.593302 #4 resolve ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 0.0s done
+2026-Jul-06 08:30:32.593302 #4 sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 1.61kB / 1.61kB done
+2026-Jul-06 08:30:32.593302 #4 sha256:98801a2e9c74b1236de01aa97bc99349f700f53f81d3bbab4411e2a8a9dd316d 1.06kB / 1.06kB done
+2026-Jul-06 08:30:32.593302 #4 sha256:75908e6a244aa7c07bd16c59f1a88c832d0735edf545bd28f86d6bee4a5536a0 4.43kB / 4.43kB done
+2026-Jul-06 08:30:32.593302 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 0B / 29.72MB 0.1s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 0B / 33.30MB 0.1s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 0B / 75.95MB 0.1s
+2026-Jul-06 08:30:32.593302 #4 ...
+2026-Jul-06 08:30:32.593302 
+2026-Jul-06 08:30:32.593302 #5 [internal] load build context
+2026-Jul-06 08:30:32.593302 #5 transferring context: 1.40MB 0.2s done
+2026-Jul-06 08:30:32.593302 #5 DONE 0.3s
+2026-Jul-06 08:30:32.593302 
+2026-Jul-06 08:30:32.593302 #4 [stage-0  1/11] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+2026-Jul-06 08:30:32.593302 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 6.29MB / 29.72MB 0.4s
+2026-Jul-06 08:30:32.593302 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 16.78MB / 29.72MB 0.6s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 3.15MB / 33.30MB 0.6s
+2026-Jul-06 08:30:32.593302 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 20.97MB / 29.72MB 0.7s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 5.24MB / 33.30MB 0.7s
+2026-Jul-06 08:30:32.593302 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 24.46MB / 29.72MB 0.8s
+2026-Jul-06 08:30:32.593302 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 28.23MB / 29.72MB 0.9s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 7.34MB / 33.30MB 0.9s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 4.14MB / 75.95MB 0.9s
+2026-Jul-06 08:30:32.593302 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 29.72MB / 29.72MB 1.1s done
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 9.85MB / 33.30MB 1.1s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 13.63MB / 33.30MB 1.3s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 13.63MB / 75.95MB 1.3s
+2026-Jul-06 08:30:32.593302 #4 sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 0B / 335B 1.3s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 15.73MB / 33.30MB 1.5s
+2026-Jul-06 08:30:32.593302 #4 sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 335B / 335B 1.4s done
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 17.83MB / 33.30MB 1.6s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 17.48MB / 75.95MB 1.6s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 19.92MB / 33.30MB 1.7s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 22.02MB / 33.30MB 1.9s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 24.12MB / 33.30MB 2.0s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 23.07MB / 75.95MB 2.0s
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 26.21MB / 33.30MB 2.2s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 29.36MB / 33.30MB 2.5s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 29.36MB / 75.95MB 2.5s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 32.51MB / 33.30MB 2.6s
+2026-Jul-06 08:30:32.593302 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 33.30MB / 33.30MB 2.7s done
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 33.55MB / 75.95MB 2.8s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 44.04MB / 75.95MB 3.1s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 48.23MB / 75.95MB 3.4s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 53.48MB / 75.95MB 4.6s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 61.87MB / 75.95MB 5.0s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 67.11MB / 75.95MB 5.3s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 71.83MB / 75.95MB 5.4s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 75.95MB / 75.95MB 5.6s
+2026-Jul-06 08:30:32.593302 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 75.95MB / 75.95MB 5.6s done
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 5.1s
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 8.8s done
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 5.7s
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 11.1s
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 11.5s done
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 5.1s
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 8.4s done
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518
+2026-Jul-06 08:30:32.593302 #4 extracting sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 done
+2026-Jul-06 08:30:32.593302 #4 DONE 36.6s
+2026-Jul-06 08:30:32.593302 
+2026-Jul-06 08:30:32.593302 #6 [stage-0  2/11] WORKDIR /app/
+2026-Jul-06 08:30:32.593302 #6 DONE 0.1s
+2026-Jul-06 08:30:32.593302 
+2026-Jul-06 08:30:32.593302 #7 [stage-0  3/11] COPY .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix
+2026-Jul-06 08:30:32.593302 #7 DONE 0.1s
+2026-Jul-06 08:30:32.593302 
+2026-Jul-06 08:30:32.593302 #8 [stage-0  4/11] RUN nix-env -if .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix && nix-collect-garbage -d
+2026-Jul-06 08:30:32.593302 #8 0.701 unpacking 'https://github.com/NixOS/nixpkgs/archive/ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.tar.gz' into the Git cache...
+2026-Jul-06 08:<REDACTED>@5.0.1',
+2026-Jul-06 08:30:32.593302 #11 4.841 npm warn EBADENGINE   required: { node: '^20.19.0 || ^22.13.0 || >=24' },
+2026-Jul-06 08:30:32.593302 #11 4.841 npm warn EBADENGINE   current: { node: 'v22.11.0', npm: '10.9.0' }
+2026-Jul-06 08:30:32.593302 #11 4.841 npm warn EBADENGINE }
+2026-Jul-06 08:30:32.593302 #11 81.30
+2026-Jul-06 08:30:32.593302 #11 81.30 added 621 packages, and audited 622 packages in 1m
+2026-Jul-06 08:30:32.593302 #11 81.30
+2026-Jul-06 08:30:32.593302 #11 81.30 236 packages are looking for funding
+2026-Jul-06 08:30:32.593302 #11 81.30   run `npm fund` for details
+2026-Jul-06 08:30:32.593302 #11 81.46
+2026-Jul-06 08:30:32.593302 #11 81.46 2 moderate severity vulnerabilities
+2026-Jul-06 08:30:32.593302 #11 81.46
+2026-Jul-06 08:30:32.593302 #11 81.46 To address all issues (including breaking changes), run:
+2026-Jul-06 08:30:32.593302 #11 81.46   npm audit fix --force
+2026-Jul-06 08:30:32.593302 #11 81.46
+2026-Jul-06 08:30:32.593302 #11 81.46 Run `npm audit` for details.
+2026-Jul-06 08:30:32.593302 #11 DONE 82.1s
+2026-Jul-06 08:30:32.593302 
+2026-Jul-06 08:30:32.593302 #12 [stage-0  8/11] COPY . /app/.
+2026-Jul-06 08:30:32.593302 #12 DONE 1.7s
+2026-Jul-06 08:30:32.593302 
+2026-Jul-06 08:30:32.593302 #13 [stage-0  9/11] RUN --mount=type=cache,id=gayf8bex8si3qkhp1w3jbqta-next/cache,target=/app/.next/cache --mount=type=cache,id=gayf8bex8si3qkhp1w3jbqta-node_modules/cache,target=/app/node_modules/.cache npm run build
+2026-Jul-06 08:30:32.593302 #13 1.138 npm warn config production Use `--omit=dev` instead.
+2026-Jul-06 08:30:32.593302 #13 1.223
+2026-Jul-06 08:30:32.593302 #13 1.223 > cap-app@0.1.0 build
+2026-Jul-06 08:30:32.593302 #13 1.223 > next build
+2026-Jul-06 08:30:32.593302 #13 1.223
+2026-Jul-06 08:30:32.593302 #13 3.752 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2026-Jul-06 08:30:32.593302 #13 3.754 This information is used to shape Next.js' roadmap and prioritize features.
+2026-Jul-06 08:30:32.593302 #13 3.757 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2026-Jul-06 08:30:32.593302 #13 3.757 https://nextjs.org/telemetry
+2026-Jul-06 08:30:32.593302 #13 3.757
+2026-Jul-06 08:30:32.593302 #13 3.802 ▲ Next.js 16.2.9 (Turbopack)
+2026-Jul-06 08:30:32.593302 #13 3.803
+2026-Jul-06 08:30:32.593302 #13 3.993   Creating an optimized production build ...
+2026-Jul-06 08:30:32.593302 #13 42.04 ✓ Compiled successfully in 37.1s
+2026-Jul-06 08:30:32.593302 #13 42.20   Running TypeScript ...
+2026-Jul-06 08:30:32.593302 #13 82.83 Failed to type check.
+2026-Jul-06 08:30:32.593302 #13 82.83
+2026-Jul-06 08:30:32.593302 #13 82.83 ./src/components/BookingWidget.tsx:51:9
+2026-Jul-06 08:30:32.593302 #13 82.83 Type error: Type '{ isOpen: boolean; onClose: () => void; propertyName: string; price: number; propertyId: string; }' is not assignable to type 'IntrinsicAttributes & { propertyId: string; price: number; propertyName: string; }'.
+2026-Jul-06 08:30:32.593302 #13 82.83   Property 'isOpen' does not exist on type 'IntrinsicAttributes & { propertyId: string; price: number; propertyName: string; }'.
+2026-Jul-06 08:30:32.593302 #13 82.83
+2026-Jul-06 08:30:32.593302 #13 82.83   49 |
+2026-Jul-06 08:30:32.593302 #13 82.83   50 |       <SimulatedCheckout
+2026-Jul-06 08:30:32.593302 #13 82.83 > 51 |         isOpen={isCheckoutOpen}
+2026-Jul-06 08:30:32.593302 #13 82.83      |         ^
+2026-Jul-06 08:30:32.593302 #13 82.83   52 |         onClose={() => setIsCheckoutOpen(false)}
+2026-Jul-06 08:30:32.593302 #13 82.83   53 |         propertyName={propertyName}
+2026-Jul-06 08:30:32.593302 #13 82.83   54 |         price={price}
+2026-Jul-06 08:30:32.593302 #13 83.02 Next.js build worker exited with code: 1 and signal: null
+2026-Jul-06 08:30:32.593302 #13 ERROR: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 1
+2026-Jul-06 08:30:32.593302 ------
+2026-Jul-06 08:30:32.593302 > [stage-0  9/11] RUN --mount=type=cache,id=gayf8bex8si3qkhp1w3jbqta-next/cache,target=/app/.next/cache --mount=type=cache,id=gayf8bex8si3qkhp1w3jbqta-node_modules/cache,target=/app/node_modules/.cache npm run build:
+2026-Jul-06 08:30:32.593302 82.83   Property 'isOpen' does not exist on type 'IntrinsicAttributes & { propertyId: string; price: number; propertyName: string; }'.
+2026-Jul-06 08:30:32.593302 82.83
+2026-Jul-06 08:30:32.593302 82.83   49 |
+2026-Jul-06 08:30:32.593302 82.83   50 |       <SimulatedCheckout
+2026-Jul-06 08:30:32.593302 82.83 > 51 |         isOpen={isCheckoutOpen}
+2026-Jul-06 08:30:32.593302 82.83      |         ^
+2026-Jul-06 08:30:32.593302 82.83   52 |         onClose={() => setIsCheckoutOpen(false)}
+2026-Jul-06 08:30:32.593302 82.83   53 |         propertyName={propertyName}
+2026-Jul-06 08:30:32.593302 82.83   54 |         price={price}
+2026-Jul-06 08:30:32.593302 83.02 Next.js build worker exited with code: 1 and signal: null
+2026-Jul-06 08:30:32.593302 ------
+2026-Jul-06 08:30:32.593302 
+2026-Jul-06 08:30:32.593302 1 warning found (use docker --debug to expand):
+2026-Jul-06 08:30:32.593302 - UndefinedVar: Usage of undefined variable '$NIXPACKS_PATH' (line 18)
+2026-Jul-06 08:30:32.593302 Dockerfile:24
+2026-Jul-06 08:30:32.593302 --------------------
+2026-Jul-06 08:30:32.593302 22 |     # build phase
+2026-Jul-06 08:30:32.593302 23 |     COPY . /app/.
+2026-Jul-06 08:30:32.593302 24 | >>> RUN --mount=type=cache,id=gayf8bex8si3qkhp1w3jbqta-next/cache,target=/app/.next/cache --mount=type=cache,id=gayf8bex8si3qkhp1w3jbqta-node_modules/cache,target=/app/node_modules/.cache npm run build
+2026-Jul-06 08:30:32.593302 25 |
+2026-Jul-06 08:30:32.593302 26 |
+2026-Jul-06 08:30:32.593302 --------------------
+2026-Jul-06 08:30:32.593302 ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 1
+2026-Jul-06 08:30:32.593302 exit status 1
+2026-Jul-06 08:30:32.714625 [DEBUG] Error type: App\Exceptions\DeploymentException
+2026-Jul-06 08:30:32.753378 [DEBUG] Error code: 0
+2026-Jul-06 08:30:32.780164 [DEBUG] Location: /var/www/html/app/Traits/ExecuteRemoteCommand.php:242
+2026-Jul-06 08:30:32.819720 [DEBUG] Stack trace (first 5 lines):
+2026-Jul-06 08:30:32.856832 [DEBUG] #0 /var/www/html/app/Traits/ExecuteRemoteCommand.php(106): App\Jobs\ApplicationDeploymentJob->executeCommandWithProcess()
+2026-Jul-06 08:30:32.884757 [DEBUG] #1 /var/www/html/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php(275): App\Jobs\ApplicationDeploymentJob->{closure:App\Traits\ExecuteRemoteCommand::execute_remote_command():72}()
+2026-Jul-06 08:30:32.904223 [DEBUG] #2 /var/www/html/app/Traits/ExecuteRemoteCommand.php(72): Illuminate\Support\Collection->each()
+2026-Jul-06 08:30:32.919245 [DEBUG] #3 /var/www/html/app/Jobs/ApplicationDeploymentJob.php(3778): App\Jobs\ApplicationDeploymentJob->execute_remote_command()
+2026-Jul-06 08:30:32.938575 [DEBUG] #4 /var/www/html/app/Jobs/ApplicationDeploymentJob.php(946): App\Jobs\ApplicationDeploymentJob->build_image()
+2026-Jul-06 08:30:32.963471 ========================================
+2026-Jul-06 08:30:32.987392 Deployment failed. Removing the new version of your application.
+2026-Jul-06 08:30:34.748694 Gracefully shutting down build container: reijus6fthpxtawrxehmw925
+2026-Jul-06 08:30:35.195335 [DEBUG] [CMD]: docker stop --time=30 reijus6fthpxtawrxehmw925
+2026-Jul-06 08:30:35.195335 [DEBUG] Flag --time has been deprecated, use --timeout instead
+2026-Jul-06 08:30:36.844647 [DEBUG] reijus6fthpxtawrxehmw925
