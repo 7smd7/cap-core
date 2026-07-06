@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project CAP — What To Actually Build</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
+                    colors: {
+                        "primary": "#5e6ad2",
+                        "primary-hover": "#828fff",
+                        "ink": "#f7f8f8",
+                        "ink-muted": "#d0d6e0",
+                        "ink-subtle": "#8a8f98",
+                        "ink-tertiary": "#62666d",
+                        "canvas": "#010102",
+                        "surface-1": "#0f1011",
+                        "surface-2": "#141516",
+                        "surface-3": "#18191a",
+                        "hairline": "#23252a",
+                        "hairline-strong": "#34343a",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Vazirmatn', sans-serif; background-color: #010102; color: #d0d6e0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #010102; }
+        ::-webkit-scrollbar-thumb { background: #23252a; border-radius: 3px; }
+
+        .phase-line {
+            position: absolute;
+            left: 19px;
+            top: 44px;
+            bottom: -24px;
+            width: 2px;
+            background: linear-gradient(to bottom, #23252a, transparent);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 10px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Ambient glow -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <main class="max-w-2xl mx-auto px-6 py-16 relative z-10">
+
+        <!-- Header -->
+        <div class="mb-14 fade-in">
+            <div class="flex items-center gap-3 mb-5">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-emerald-500 flex items-center justify-center shadow-lg shadow-primary/20 shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </span>
+                <span class="text-xs font-bold tracking-widest text-ink-tertiary uppercase">Project CAP — Execution Plan</span>
+            </div>
+            <h1 class="text-3xl font-bold text-ink leading-tight mb-4">
+                You don't own anything.<br/>
+                <span class="text-primary">You coordinate everything.</span>
+            </h1>
+            <p class="text-ink-subtle text-sm leading-relaxed max-w-lg">
+                Uber has no taxis. Airbnb has no homes. You build the layer that connects verified vendors to users who want to subscribe to a lifestyle — not own one.
+                <strong class="text-ink-muted"> Your code is the product.</strong>
+            </p>
+        </div>
+
+        <!-- Truth card -->
+        <div class="bg-surface-1 border border-hairline rounded-2xl p-5 mb-12 fade-in delay-1">
+            <p class="text-xs font-bold tracking-widest text-ink-tertiary uppercase mb-3">What you're actually building</p>
+            <div class="grid grid-cols-3 gap-3 text-center text-sm">
+                <div class="bg-surface-2 rounded-xl p-3 border border-hairline">
+                    <div class="text-lg mb-1">🏠</div>
+                    <div class="text-ink-muted font-medium">Verified listings</div>
+                    <div class="text-ink-tertiary text-xs mt-1">You don't own them</div>
+                </div>
+                <div class="bg-surface-2 rounded-xl p-3 border border-hairline">
+                    <div class="text-lg mb-1">🔗</div>
+                    <div class="text-ink-muted font-medium">Vendor network</div>
+                    <div class="text-ink-tertiary text-xs mt-1">You don't employ them</div>
+                </div>
+                <div class="bg-surface-2 rounded-xl p-3 border border-hairline">
+                    <div class="text-lg mb-1">📦</div>
+                    <div class="text-ink-muted font-medium">One subscription</div>
+                    <div class="text-ink-muted font-bold text-xs mt-1">This is your code</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phases -->
+        <div class="mb-6 fade-in delay-2">
+            <p class="text-xs font-bold tracking-widest text-ink-tertiary uppercase mb-8">The plan — 4 phases</p>
+
+            <!-- Phase 1 -->
+            <div class="relative pl-12 pb-10 fade-in delay-2">
+                <div class="phase-line"></div>
+                <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-surface-2 border border-hairline-strong flex items-center justify-center text-sm font-bold text-primary shrink-0">1</div>
+                <div>
+                    <div class="flex items-center gap-2 mb-2 mt-1.5">
+                        <h3 class="text-ink font-semibold">Build the database</h3>
+                        <span class="tag" style="color:#8a8f98; border-color:#34343a; background:rgba(30,31,33,0.5)">Week 1</span>
+                    </div>
+                    <p class="text-ink-subtle text-sm leading-relaxed mb-3">
+                        Set up Supabase. Four tables: <code class="text-primary text-xs bg-surface-2 px-1.5 py-0.5 rounded">listings</code>, <code class="text-primary text-xs bg-surface-2 px-1.5 py-0.5 rounded">vendors</code>, <code class="text-primary text-xs bg-surface-2 px-1.5 py-0.5 rounded">bookings</code>, <code class="text-primary text-xs bg-surface-2 px-1.5 py-0.5 rounded">service_requests</code>. Nothing else. Then manually fill it: find 5 real furnished rentals in Yerevan, 3 real cleaners, 2 food services. Call them. Confirm they can work with you.
+                    </p>
+                    <div class="text-xs text-ink-tertiary font-mono">Supabase · No frontend yet · Pure data</div>
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="relative pl-12 pb-10 fade-in delay-3">
+                <div class="phase-line"></div>
+                <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-surface-2 border border-hairline-strong flex items-center justify-center text-sm font-bold text-primary shrink-0">2</div>
+                <div>
+                    <div class="flex items-center gap-2 mb-2 mt-1.5">
+                        <h3 class="text-ink font-semibold">Build the booking UI</h3>
+                        <span class="tag" style="color:#8a8f98; border-color:#34343a; background:rgba(30,31,33,0.5)">Weeks 2–3</span>
+                    </div>
+                    <p class="text-ink-subtle text-sm leading-relaxed mb-3">
+                        Next.js. A listings page. A booking form. An admin panel for you to see requests and change statuses. That's it. Users can browse listings and submit a booking. You receive a notification. You handle it manually — WhatsApp the landlord, confirm the cleaner, arrange the food. <strong class="text-ink-muted">You are the backend for now.</strong>
+                    </p>
+                    <div class="text-xs text-ink-tertiary font-mono">Next.js · Supabase · No payments yet</div>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="relative pl-12 pb-10 fade-in delay-4">
+                <div class="phase-line"></div>
+                <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-surface-2 border border-primary/40 flex items-center justify-center text-sm font-bold text-primary shrink-0">3</div>
+                <div>
+                    <div class="flex items-center gap-2 mb-2 mt-1.5">
+                        <h3 class="text-ink font-semibold">Add payment + first users</h3>
+                        <span class="tag" style="color:#5e6ad2; border-color:#5e6ad2; background:rgba(94,106,210,0.08)">Month 2</span>
+                    </div>
+                    <p class="text-ink-subtle text-sm leading-relaxed mb-3">
+                        Connect Stripe. One subscription plan. When payment goes through, booking activates. Find 2–3 users from your AVC network — digital nomads, people you already know. Give them access. Operate manually. Learn every single thing that breaks or feels wrong.
+                    </p>
+                    <div class="text-xs text-ink-tertiary font-mono">Stripe · AVC network · Wizard-of-Oz ops</div>
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="relative pl-12 pb-10 fade-in delay-5">
+                <div class="phase-line"></div>
+                <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-sm font-bold text-emerald-400 shrink-0">4</div>
+                <div>
+                    <div class="flex items-center gap-2 mb-2 mt-1.5">
+                        <h3 class="text-ink font-semibold">Automate → Decentralize</h3>
+                        <span class="tag" style="color:#27a644; border-color:#27a644; background:rgba(39,166,68,0.08)">Month 3+</span>
+                    </div>
+                    <p class="text-ink-subtle text-sm leading-relaxed mb-3">
+                        Replace yourself with code. Webhooks to vendor APIs. Auto-dispatch on booking confirmation. Auto-split payments to landlord + cleaner + food vendor. <strong class="text-ink-muted">Now add the DAO layer</strong> — smart contracts for fund management, community curation of vendor quality, multi-sig treasury.
+                    </p>
+                    <div class="text-xs text-emerald-500/60 font-mono">Webhooks · Auto-dispatch · Smart contracts · DAO governance</div>
+                </div>
+            </div>
+
+            <!-- Phase 5: You as user -->
+            <div class="relative pl-12 fade-in delay-6">
+                <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary/15 border border-primary/50 flex items-center justify-center shrink-0">
+                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 mb-2 mt-1.5">
+                        <h3 class="text-ink font-semibold">You become the first user</h3>
+                        <span class="tag" style="color:#5e6ad2; border-color:#5e6ad2; background:rgba(94,106,210,0.08)">The whole point</span>
+                    </div>
+                    <p class="text-ink-subtle text-sm leading-relaxed">
+                        You built the utopia. Now subscribe to it yourself. One monthly payment. Housing + cleaning + food. No ownership. No maintenance anxiety. You are living the product you made.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- The one rule -->
+        <div class="mt-14 bg-surface-1 border border-hairline rounded-2xl p-6 fade-in delay-6">
+            <p class="text-xs font-bold tracking-widest text-ink-tertiary uppercase mb-4">The only rule</p>
+            <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                    <span class="text-emerald-400 mt-0.5 shrink-0">✓</span>
+                    <p class="text-sm text-ink-subtle">Build Phase 1 before touching Phase 2. Build Phase 2 before adding Stripe.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-emerald-400 mt-0.5 shrink-0">✓</span>
+                    <p class="text-sm text-ink-subtle">Do not write smart contracts until you have at least one paying user.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-emerald-400 mt-0.5 shrink-0">✓</span>
+                    <p class="text-sm text-ink-subtle">Manual coordination is not failure. It's how you learn what to automate.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-red-400/70 mt-0.5 shrink-0">✗</span>
+                    <p class="text-sm text-ink-subtle">No more planning documents until Phase 3 is done.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stack -->
+        <div class="mt-6 bg-surface-1 border border-hairline rounded-2xl p-6 fade-in delay-6">
+            <p class="text-xs font-bold tracking-widest text-ink-tertiary uppercase mb-4">Your full stack (no surprises)</p>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+                <div class="flex items-center gap-2 text-ink-subtle"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Next.js + Tailwind</div>
+                <div class="flex items-center gap-2 text-ink-subtle"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Supabase (DB + Auth)</div>
+                <div class="flex items-center gap-2 text-ink-subtle"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Stripe (subscriptions)</div>
+                <div class="flex items-center gap-2 text-ink-subtle"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>WhatsApp Business (ops)</div>
+                <div class="flex items-center gap-2 text-ink-subtle"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>Webhooks (vendor dispatch)</div>
+                <div class="flex items-center gap-2 text-ink-subtle"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>Smart contracts (DAO, later)</div>
+            </div>
+        </div>
+
+        <p class="text-center text-ink-tertiary text-xs mt-10 fade-in delay-6">Project CAP · Execution Plan v1 · No ownership. Pure coordination.</p>
+
+        <!-- AI Builder Prompt Section -->
+        <div class="mt-16 fade-in delay-6">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-primary flex items-center justify-center shadow-lg shadow-violet-500/20 shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                </span>
+                <div>
+                    <p class="text-xs font-bold tracking-widest text-ink-tertiary uppercase">For Antigravity</p>
+                    <h2 class="text-ink font-bold text-lg">Full App Prompt</h2>
+                </div>
+                <button onclick="copyPrompt()" id="copyBtn" class="ml-auto text-xs font-semibold px-4 py-2 rounded-lg bg-surface-2 border border-hairline-strong text-ink-muted hover:text-ink hover:border-primary/50 transition-all">
+                    Copy prompt
+                </button>
+            </div>
+
+            <div class="relative">
+                <textarea id="promptText" readonly
+                    class="w-full bg-surface-1 border border-hairline rounded-2xl p-6 text-xs text-ink-subtle font-mono leading-relaxed resize-none focus:outline-none focus:border-primary/40 transition-colors"
+                    style="height: 520px; scrollbar-width: thin;"
+                >
+# PROJECT CAP — Full Application Build Prompt
+# Use this to generate the app with an AI builder (e.g. Antigravity, v0, Bolt)
+
+---
+
+## WHAT THIS APP IS
+
+CAP (Co-Living Automated Platform) is a Housing-as-a-Service (HaaS) platform.
+It owns nothing. It employs no one. It is a pure coordination and verification layer.
+Like Uber owns no taxis and Airbnb owns no homes — CAP coordinates existing housing
+and local vendors into a single subscription that a digital nomad pays monthly.
+
+One subscription = housing + cleaning + food + transport + coworking.
+The user never worries about maintenance, contracts, or logistics. They just live.
+
+Core manifesto: "Professionals should not be tied to any location. They should move
+through the world at peak comfort, fully fluid, 100% focused on their work and life."
+
+---
+
+## THREE USER ROLES
+
+**Nomad** — The primary user. Pays a monthly flat fee ($800–$1,200). Gets a verified
+furnished apartment + services bundled. Builds an NFI (Nomad Financial Identity)
+score over time based on payment history and behavior.
+
+**Investor** — Stakes capital into the CAP Invest fund (e.g. $100,000). That capital is
+deployed into housing inventory. Investor earns ~1% monthly yield. If yield >= monthly
+subscription cost, the investor lives for free. Capital stays liquid and withdrawable.
+
+**Admin** — Platform operator (initially the founder). Manages listings, approves
+vendors, handles service dispatch queue, views financial dashboard.
+
+---
+
+## SERVICE MODULES (platform coordinates, never owns these)
+
+- **HousingCore**: Verified furnished rental listings, curated and managed by platform
+- **NourishNet**: Daily food delivery, preferences synced to user profile (vegan, etc.)
+- **CleanOS**: Cleaning service, user sets frequency, auto-dispatched to local vendors
+- **FlowMobility**: Airport transfer + city transport, auto-triggered on booking arrival date
+- **WorkOS**: Coworking desk or private office booking, synced with check-in date
+- **WellnessOS** (future): Gym access pass, online doctor, portable medical records
+- **TribeLayer** (future): Optional social matching with similar nomads, consent-based
+
+---
+
+## THE ZERODAY EXPERIENCE (The Holy Grail Feature — design UX around this)
+
+When a nomad lands in a new city at midnight after 3 months elsewhere:
+
+  11:30 PM — Lands at airport. FlowMobility car is already waiting. No conversation needed.
+  12:00 AM — Arrives at apartment. Door unlocks with face scan.
+  12:00 AM — Temperature is already 22°C (their saved preference). Fridge has plant milk
+              and Ethiopian coffee (system knows their breakfast from last city).
+  01:00 AM — App notification: "Your project deadline is near. Want me to book a soundproof
+              private office within 200m for tomorrow so you can focus 100%?"
+  08:45 AM — Coffee maker auto-starts. Lights slowly brighten. Work playlist begins.
+              The user feels like they never left.
+
+This is the feature that makes users say: "I can never go back to renting traditionally."
+
+---
+
+## DATABASE SCHEMA (Supabase / PostgreSQL)
+
+### users
+- id: UUID (PK)
+- email: text
+- full_name: text
+- role: enum('nomad', 'investor', 'admin')
+- kyc_status: enum('pending', 'verified', 'rejected')
+- nfi_score: float (0–100, Nomad Financial Identity)
+- preferences: jsonb
+  {
+    dietary: string,         // "vegan", "high-protein", "no restrictions"
+    temperature_c: int,      // preferred room temperature
+    wake_time: string,       // "07:00"
+    music_genre: string,     // "lo-fi", "jazz", "none"
+    language: string
+  }
+- stripe_customer_id: text
+- created_at: timestamp
+
+### properties
+- id: UUID (PK)
+- name: text
+- city: text
+- country: text
+- address: text
+- monthly_cost_usd: float
+- status: enum('available', 'booked', 'maintenance', 'unlisted')
+- landlord_contact: text
+- verified: boolean
+- amenities: text[]         // ["wifi", "kitchen", "washer", "ac"]
+- photos: text[]            // array of URLs
+- created_at: timestamp
+
+### bookings
+- id: UUID (PK)
+- user_id: UUID (FK → users)
+- property_id: UUID (FK → properties)
+- start_date: date
+- end_date: date
+- status: enum('pending', 'active', 'completed', 'cancelled')
+- total_amount_usd: float
+- stripe_subscription_id: text
+- services_included: text[] // ["cleaning", "food", "transport"]
+- created_at: timestamp
+
+### service_requests
+- id: UUID (PK)
+- booking_id: UUID (FK → bookings)
+- type: enum('cleaning', 'food', 'transport', 'coworking', 'laundry', 'wellness')
+- status: enum('pending', 'dispatched', 'completed', 'failed')
+- vendor_id: UUID (FK → vendor_partners)
+- scheduled_at: timestamp
+- notes: text
+- created_at: timestamp
+
+### vendor_partners
+- id: UUID (PK)
+- name: text
+- service_type: enum('cleaning', 'food', 'transport', 'coworking', 'laundry')
+- city: text
+- country: text
+- webhook_url: text          // for auto-dispatch
+- auto_dispatch: boolean
+- rate_per_service_usd: float
+- verified: boolean
+- created_at: timestamp
+
+### vault_stakes (CAP Invest — investor fund)
+- id: UUID (PK)
+- investor_id: UUID (FK → users)
+- amount_staked_usd: float
+- monthly_yield_rate: float  // e.g. 0.01 = 1% per month
+- accrued_yield_usd: float
+- status: enum('active', 'withdrawn')
+- staked_at: timestamp
+
+### transactions
+- id: UUID (PK)
+- user_id: UUID (FK → users)
+- type: enum('subscription', 'yield_credit', 'service_charge', 'stake_deposit', 'stake_withdrawal')
+- amount_usd: float
+- direction: enum('credit', 'debit')
+- stripe_payment_intent_id: text
+- created_at: timestamp
+
+---
+
+## PAGES TO BUILD
+
+### Public
+- / — Landing page: explain the concept, show pricing tiers, CTA to sign up
+- /auth — Sign up / Login (Supabase Auth, email + password)
+- /onboarding — Post-signup: collect role, preferences, KYC info
+
+### Nomad Dashboard (/dashboard/nomad)
+- Overview: active booking status, next service, NFI score
+- /listings — Browse verified properties (filter: city, price, dates)
+- /listings/[id] — Property detail + booking form
+- /booking/[id] — Active booking: services timeline, schedule changes
+- /services — Toggle/manage services (food preferences, cleaning frequency)
+- /profile — Edit preferences, payment methods, NFI explanation
+
+### Investor Dashboard (/dashboard/investor)
+- Overview: total staked, monthly yield rate, accrued yield, yield vs subscription offset
+- /stake — Stake new capital (form → Stripe → vault_stakes record)
+- /withdraw — Initiate withdrawal with notice period
+- /ledger — Full transaction history
+
+### Admin Dashboard (/dashboard/admin)
+- /properties — CRUD for listings (add, verify, deactivate)
+- /bookings — All bookings with status management
+- /vendors — Manage vendor partners, test webhook dispatch
+- /services — Service request queue, manual override for failed dispatch
+- /users — View all users, NFI scores, KYC status, role
+- /finance — Revenue overview, vendor payout totals, yield obligations
+
+---
+
+## KEY BUSINESS LOGIC TO IMPLEMENT
+
+1. **Subscription activation**: When Stripe payment succeeds (webhook) → set booking
+   status to 'active' → automatically create service_requests for all services
+   in booking.services_included for the full booking duration.
+
+2. **Auto-dispatch**: For each new service_request, check vendor.auto_dispatch.
+   If true → POST to vendor.webhook_url with request details.
+   If false → flag in admin queue for manual handling.
+
+3. **Yield calculation**: Run a daily job (Supabase Edge Function or cron):
+   for each active vault_stake, add (amount_staked * monthly_yield_rate / 30)
+   to accrued_yield. Create a 'yield_credit' transaction record.
+
+4. **NFI Score**: Recalculate on each completed booking:
+   base = 50, +10 per on-time payment, +5 per completed booking,
+   +2 per positive vendor interaction, -15 per late payment.
+   Cap at 100. Higher NFI → platform surfaces premium properties first.
+
+5. **ZeroDay trigger**: When booking start_date = today → auto-create
+   FlowMobility service_request (if transport is in services_included),
+   trigger welcome notification with apartment details.
+
+---
+
+## TECH STACK
+
+- Frontend: Next.js 14 (App Router) + TypeScript + Tailwind CSS
+- Auth + Database: Supabase (PostgreSQL + Row Level Security + Edge Functions)
+- Payments: Stripe (subscriptions for nomads, payment intents for investors)
+- Deployment: Vercel
+- Service dispatch: HTTP webhooks (vendor APIs) — WhatsApp Business fallback for MVP
+
+---
+
+## DESIGN LANGUAGE
+
+Dark theme, premium SaaS feel — not a hostel booking site.
+
+Colors:
+  - Background: #010102
+  - Surface 1: #0f1011
+  - Surface 2: #141516
+  - Border: #23252a
+  - Text primary: #f7f8f8
+  - Text muted: #d0d6e0
+  - Text subtle: #8a8f98
+  - Accent (primary): #5e6ad2 (indigo — main actions, nomad features)
+  - Accent (success): #27a644 (green — completed, active states)
+  - Accent (investor): #f59e0b (yellow — CAP Invest, yield, investor features)
+  - Accent (future): #8b5cf6 (violet — DAO, Web3, advanced features)
+
+Typography: Inter (or Vazirmatn for RTL fallback). Clean, legible, no decorative fonts.
+Border radius: 12–16px on cards, 8px on inputs, 999px on badges/pills.
+No gradients on interactive elements. Gradients only on hero/brand moments.
+
+---
+
+## MVP SCOPE — BUILD ONLY THIS
+
+Phase 1 (Week 1): Supabase schema + Auth + role routing
+Phase 2 (Week 2–3): Property listings + booking form + admin panel
+Phase 3 (Month 2): Stripe subscriptions + service_request auto-creation
+Phase 4 (Month 2–3): First real users, manual vendor coordination
+
+DO NOT BUILD IN MVP:
+- Lumen AI (predictive city recommendations)
+- IoT / smart home integration
+- Blockchain, tokens, DAO governance
+- TribeLayer social matching
+- Mobile native app
+- CAP Invest (build after first paying nomad users)
+
+Build the coordination engine first. Automate it second. Decentralize it third.
+                </textarea>
+            </div>
+
+            <p class="text-center text-ink-tertiary text-xs mt-6">Project CAP · Execution Plan v1 · No ownership. Pure coordination.</p>
+        </div>
+
+        <script>
+            function copyPrompt() {
+                const text = document.getElementById('promptText').value;
+                navigator.clipboard.writeText(text.trim()).then(() => {
+                    const btn = document.getElementById('copyBtn');
+                    btn.textContent = 'Copied ✓';
+                    btn.style.color = '#27a644';
+                    btn.style.borderColor = 'rgba(39,166,68,0.4)';
+                    setTimeout(() => {
+                        btn.textContent = 'Copy prompt';
+                        btn.style.color = '';
+                        btn.style.borderColor = '';
+                    }, 2000);
+                });
+            }
+        </script>
+
+    </main>
+</body>
+</html>

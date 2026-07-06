@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project CAP - The Master Document v1.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            themeVariables: {
+                background: '#010102',
+                primaryColor: '#0f1011',
+                primaryBorderColor: '#23252a',
+                primaryTextColor: '#f7f8f8',
+                lineColor: '#5e6ad2',
+                fontSize: '16px',
+            },
+            fontFamily: 'Vazirmatn',
+        });
+    </script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        "primary": "#5e6ad2",
+                        "on-primary": "#ffffff",
+                        "primary-hover": "#828fff",
+                        "primary-focus": "#5e69d1",
+                        "ink": "#f7f8f8",
+                        "ink-muted": "#d0d6e0",
+                        "ink-subtle": "#8a8f98",
+                        "ink-tertiary": "#62666d",
+                        "canvas": "#010102",
+                        "surface-1": "#0f1011",
+                        "surface-2": "#141516",
+                        "surface-3": "#18191a",
+                        "surface-4": "#191a1b",
+                        "hairline": "#23252a",
+                        "hairline-strong": "#34343a",
+                        "hairline-tertiary": "#3e3e44",
+                        "inverse-canvas": "#ffffff",
+                        "inverse-surface-1": "#f5f6f6",
+                        "inverse-surface-2": "#f6f7f7",
+                        "inverse-ink": "#000000",
+                        "brand-secure": "#7a7fad",
+                        "semantic-success": "#27a644",
+                        "semantic-overlay": "#000000",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Vazirmatn', sans-serif; background-color: #010102; color: #f7f8f8; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #010102; }
+        ::-webkit-scrollbar-thumb { background: #23252a; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #34343a; }
+        
+        .glass-panel {
+            background: rgba(15, 16, 17, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #23252a;
+        }
+        
+        .mermaid svg {
+            width: 100% !important;
+            min-width: 600px;
+            max-width: 900px;
+            height: auto !important;
+        }
+        .mermaid .node text {
+            font-size: 16px !important;
+            font-weight: 500 !important;
+        }
+        .mermaid .edgeLabel {
+            font-size: 13px !important;
+        }
+    </style>
+</head>
+<body class="bg-canvas text-ink-muted antialiased selection:bg-primary/30 selection:text-primary-hover flex">
+  
+    <!-- Sidebar -->
+    <aside class="w-72 glass-panel h-screen sticky top-0 hidden xl:flex flex-col p-6 shadow-2xl z-20 border-l border-hairline shrink-0">
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-ink tracking-tight flex items-center gap-2">
+                <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-emerald-500 flex items-center justify-center shadow-lg shadow-primary/20">
+                    <svg class="w-5 h-5 text-canvas" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </span>
+                پروژه CAP
+            </h1>
+            <div class="mt-4 flex items-center gap-2">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-2 text-ink-muted text-[11px] font-bold tracking-wider border border-hairline-strong uppercase">
+                    Startup Playbook v1.0
+                </div>
+            </div>
+        </div>
+        
+        <nav class="flex-1 space-y-1 mt-2 overflow-y-auto pr-2 custom-scrollbar">
+            <a href="#definition" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۱. ایده اصلی و پارادایم شیفت</a>
+            <a href="#mvv" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۲. چشم‌انداز، ماموریت و ارزش‌ها</a>
+            <a href="#architecture" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۳. معماری بازار سه‌گانه</a>
+            <a href="#seven-nodes" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۴. اکوسیستم تار عنکبوتی (۱۱ گره)</a>
+            <a href="#user-stories" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۵. تجربه کاربری: ZeroDay</a>
+            <a href="#business-plan" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۶. اقتصاد واحد (Unit Economics)</a>
+            <a href="#gtm" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۷. استراتژی ورود به بازار (MVP)</a>
+            <a href="#solo-founder" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۸. برنامه اجرایی (Solo-Founder)</a>
+            <a href="#macro-biz" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۹. مدل‌های کلان: B2B و B2G</a>
+            <a href="#roadmap" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۱۰. نقشه راه و مدیریت ریسک</a>
+            <a href="#web3-endgame" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors">۱۱. چشم‌انداز نهایی (Lumen AI)</a>
+                    <a href="#technical-blueprint" class="block px-4 py-2 rounded-lg text-[13px] font-medium text-ink-subtle hover:text-ink hover:bg-surface-3 transition-colors mt-4">۱۲. معماری کد و نقشه برنامه‌نویسی</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 min-w-0 px-4 sm:px-8 py-12 md:px-12 lg:px-24 relative overflow-x-hidden">
+        <div class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto space-y-24 relative z-10">
+            
+            <!-- Desktop Header -->
+            <header class="hidden xl:block mb-16">
+                <div class="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold tracking-wide mb-6">
+                    Project CAP: Master Document v1.0
+                </div>
+                <h1 class="text-5xl lg:text-6xl font-black text-ink tracking-tight leading-[1.1] mb-6">
+                    سیستم‌عامل زندگی <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-400 to-emerald-400">بدون مرز</span>
+                </h1>
+                <p class="text-xl text-ink-muted leading-relaxed font-light">
+                    The Startup Playbook: From Idea to Autonomous Organization.
+                </p>
+            </header>
+
+            <!-- Mobile Header -->
+            <div class="xl:hidden mb-12">
+                <h1 class="text-3xl font-bold text-ink tracking-tight flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-emerald-500 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-canvas" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </span>
+                    پروژه CAP
+                </h1>
+                <p class="mt-3 text-ink-muted text-sm font-medium">The Startup Playbook (v1.0)</p>
+            </div>
+
+            <!-- The Manifesto -->
+            <div class="bg-surface-1 border-r-4 border-primary rounded-l-2xl p-6 lg:p-8 mb-16 shadow-lg shadow-primary/5 relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-8xl opacity-5">👁️</div>
+                <h2 class="text-sm font-bold tracking-widest text-primary mb-4">مانیفست و فلسفه پروژه (The Manifesto)</h2>
+                <div class="text-ink-muted leading-relaxed text-justify space-y-4">
+                    <p>
+                        <strong class="text-ink">این سیستم یک هاستل ارتقایافته نیست.</strong> در یک هاستل پریمیوم شما می‌توانید با روزی ۷ هزار درام صبحانه بخورید و در فضای اشتراکی کار کنید، اما نتیجه آن یک <strong>«زندگی اشتراکی (کمونیستی)»</strong> است که در آن استایل زندگی همه شبیه به هم است.
+                    </p>
+                    <p>
+                        چشم‌انداز ما متفاوت است: ما می‌خواهیم متخصصان با <strong>همان هزینه‌های جاری</strong>، سطح کیفیت، فردیت و آرامش بسیار بالاتری را تجربه کنند. هدف این پلتفرم حذف کارهای تکراری و دوست‌نداشتنی (نظافت، مدیریت خانه، لجستیک) است تا زمان آزاد شده صرف تفریح و تمرکز عمیق روی تخصص شود.
+                    </p>
+                    <p class="text-emerald-400 font-medium text-lg mt-2">
+                        «انسان‌ها نباید به هیچ نقطه‌ای وابسته باشند؛ آن‌ها باید بتوانند در اوج رفاهِ شخصی، کاملاً سیّال (Fluid) پیش بروند.»
+                    </p>
+                </div>
+            </div>
+
+            <!-- 1. Definition -->
+            <section id="definition" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">01</span>
+                    <h2 class="text-3xl font-bold text-ink">ماهیت پروژه CAP چیست؟</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-hairline to-transparent mb-8"></div>
+                
+                <div class="bg-gradient-to-br from-surface-1 to-surface-1/50 border border-hairline p-8 rounded-2xl shadow-xl space-y-6">
+                    <div class="flex items-center gap-4 border-b border-hairline pb-6">
+                        <div class="p-3 bg-primary/10 rounded-xl text-primary font-bold text-xl">CAP</div>
+                        <div>
+                            <h3 class="text-ink font-bold text-lg">Co-Living Automated Platform</h3>
+                            <p class="text-ink-muted text-sm">پلتفرم خودکارسازی زندگی اشتراکی</p>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xl font-bold text-ink mt-6">پارادایم شیفت: HaaS (Housing-as-a-Service)</h4>
+                    <p class="text-lg leading-relaxed text-ink-muted text-justify">
+                        در دنیای تکنولوژی، ما دیگر سرور فیزیکی نمی‌خریم؛ بلکه دیتابیس را به عنوان یک سرویس (DBaaS) می‌گیریم. <strong>پروژه CAP همین مفهوم را به بالاترین سطح زندگی فیزیکی می‌آورد.</strong> چرا یک فرد متخصص باید درگیر خرید مواد غذایی، مدیریت خانه یا لجستیک شود؟ CAP یک سیستم‌عامل نرم‌افزاری است که زندگی لوکس، کار عمیق و رفاه شخصی را به یک سرویس یکپارچه و نامرئی تبدیل می‌کند تا فرد بتواند با خیالی آسوده و کاملاً سیال (Fluid)، ۱۰۰٪ زمانش را صرف تخصص و تفریح خود کند. این یک هاستل نیست؛ این یک سرویس هتلینگ ۵ ستاره‌ی شخصی‌سازی‌شده و غیرمتمرکز است.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 2. MVV -->
+            <section id="mvv" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">02</span>
+                    <h2 class="text-3xl font-bold text-ink">چشم‌انداز، ماموریت و ارزش‌ها (MVV)</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-hairline to-transparent mb-8"></div>
+                
+                <!-- Core Values -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="flex gap-4 p-5 bg-surface-1/50 rounded-xl border border-hairline">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl shrink-0">🌐</div>
+                        <div>
+                            <h4 class="font-bold text-ink mb-1">غیرمتمرکز بودن (Decentralization)</h4>
+                            <p class="text-xs text-ink-muted text-justify leading-relaxed">عدم احتکار دارایی و آزادی کامل. پلتفرم هیچ مکانی را به کسی تحمیل نمی‌کند، بلکه واسطی نامرئی برای ارائه یک زندگی سیال و بی‌مرز با بالاترین کیفیت است.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-5 bg-surface-1/50 rounded-xl border border-hairline">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl shrink-0">☁️</div>
+                        <div>
+                            <h4 class="font-bold text-ink mb-1">دسترسی جایگزین مالکیت (Asset-Light)</h4>
+                            <p class="text-xs text-ink-muted text-justify leading-relaxed">عبور از مدل سنگین «مالکیت فیزیکی» به سمت «دسترسی پریمیوم». انسان‌ها آزادند بدون داشتن بار اضافی، بالاترین استایل زندگی را به صورت یک سرویس اشتراکی دریافت کنند.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Architecture -->
+            <section id="architecture" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">03</span>
+                    <h2 class="text-3xl font-bold text-ink">معماری پایه: بازار سه‌گانه</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-hairline to-transparent mb-8"></div>
+                
+                <div class="bg-surface-1 p-6 rounded-2xl border border-hairline overflow-x-auto flex justify-center mb-8">
+                    <div class="mermaid w-full flex justify-center py-4">
+                        graph TD
+                            classDef core fill:#0f1011,stroke:#5e6ad2,stroke-width:2px,color:#f7f8f8;
+                            classDef user fill:#141516,stroke:#27a644,stroke-width:2px,color:#f7f8f8;
+                            classDef owner fill:#141516,stroke:#7a7fad,stroke-width:2px,color:#f7f8f8;
+                            classDef service fill:#141516,stroke:#f97316,stroke-width:2px,color:#f7f8f8;
+
+                            CAP((پلتفرم مرکزی CAP)):::core
+                            
+                            N[عشایر دیجیتال<br>Demand]:::user
+                            O[مالکان املاک<br>Supply]:::owner
+                            S[سرویس‌دهندگان<br>کترینگ، نظافت]:::service
+
+                            N -- پرداخت حق اشتراک --> CAP
+                            CAP -- تخصیص خانه و خدمات --> N
+
+                            O -- تامین فضای فیزیکی --> CAP
+                            CAP -- واریز اجاره تضمینی --> O
+
+                            CAP -- لیست سفارشات روزانه --> S
+                            S -- ارائه خدمات محلی --> CAP
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. The Spider-Web Ecosystem (10 Nodes) -->
+            <section id="seven-nodes" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">04</span>
+                    <h2 class="text-3xl font-bold text-ink">اکوسیستم تار عنکبوتی (۱۱ گره)</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-primary/30 to-transparent mb-8"></div>
+                
+                <p class="text-ink-muted mb-8 text-justify leading-relaxed">
+                    یک <strong>اکوسیستم واقعی</strong> زمانی رخ می‌دهد که هر خدمت، برای خدمت دیگر دیتا و ارزش تولید کند (اثر شبکه‌ای). CAP از ۱۱ گره کاملاً درهم‌تنیده تشکیل می‌شود:
+                </p>
+
+                <!-- Core Nodes -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Node 1 -->
+                    <div class="bg-surface-1 border border-hairline-strong rounded-2xl p-6 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                        <div class="absolute -right-6 -top-6 text-6xl opacity-10 group-hover:scale-110 transition-transform">🏠</div>
+                        <h3 class="text-lg font-bold text-primary mb-2">۱. HousingCore</h3>
+                        <p class="text-sm text-ink-muted leading-relaxed text-justify">
+                            <strong>اقامتگاه پریمیوم فردی:</strong> قراردادهای انعطاف‌پذیر برای آپارتمان‌های خصوصی و استاندارد. هیچ فضای مشترک کمونیستی وجود ندارد؛ حریم خصوصی مطلق تضمین شده است.
+                        </p>
+                    </div>
+
+                    <!-- Node 2 -->
+                    <div class="bg-surface-1 border border-hairline-strong rounded-2xl p-6 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                        <div class="absolute -right-6 -top-6 text-6xl opacity-10 group-hover:scale-110 transition-transform">💻</div>
+                        <h3 class="text-lg font-bold text-primary mb-2">۲. WorkOS</h3>
+                        <p class="text-sm text-ink-muted leading-relaxed text-justify">
+                            <strong>زیرساخت کار عمیق:</strong> دسترسی آن‌دیمند به دفاتر کار خصوصی بی‌صدا (Soundproof) و امکانات کار حرفه‌ای برای تمرکز ۱۰۰ درصدی، نه صرفاً نشستن در یک کافه شلوغ.
+                        </p>
+                    </div>
+
+                    <!-- Node 3 -->
+                    <div class="bg-surface-1 border border-emerald-500/30 rounded-2xl p-6 relative overflow-hidden group hover:border-emerald-500/80 transition-colors shadow-lg shadow-emerald-900/10">
+                        <div class="absolute -right-6 -top-6 text-6xl opacity-10 group-hover:scale-110 transition-transform">💳</div>
+                        <h3 class="text-lg font-bold text-emerald-400 mb-2">۳. TrustLedger</h3>
+                        <p class="text-sm text-ink-muted leading-relaxed text-justify">
+                            <strong>هویت مالی (NFI):</strong> پرداخت به موقع اجاره، یک امتیاز اعتباری می‌سازد. این امتیاز، امکان اجاره بدون‌پول‌پیش و وام‌های خرد را باز می‌کند.
+                        </p>
+                    </div>
+
+                    <!-- Node 4 -->
+                    <div class="bg-surface-1 border border-hairline-strong rounded-2xl p-6 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                        <div class="absolute -right-6 -top-6 text-6xl opacity-10 group-hover:scale-110 transition-transform">✈️</div>
+                        <h3 class="text-lg font-bold text-primary mb-2">۴. FlowMobility</h3>
+                        <p class="text-sm text-ink-muted leading-relaxed text-justify">
+                            <strong>لجستیک جابجایی:</strong> ترانسفر فرودگاهی و پکیج خوش‌آمدگویی. کاهش ۱۰۰ درصدی اصطکاک جابجایی بین شهرها.
+                        </p>
+                    </div>
+
+                    <!-- Node 5 -->
+                    <div class="bg-surface-1 border border-hairline-strong rounded-2xl p-6 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                        <div class="absolute -right-6 -top-6 text-6xl opacity-10 group-hover:scale-110 transition-transform">🥗</div>
+                        <h3 class="text-lg font-bold text-primary mb-2">۵. NourishNet</h3>
+                        <p class="text-sm text-ink-muted leading-relaxed text-justify">
+                            <strong>تغذیه هدفمند و سیال:</strong> رژیم غذاییِ شخصی‌سازی‌شده‌ی کاربر (مثلاً وگان یا پروتئین بالا) با تغییر شهر، به صورت خودکار با بهترین سرآشپزهای محلی همگام شده و درب منزل خصوصی او تحویل می‌شود.
+                        </p>
+                    </div>
+
+                    <!-- Node 6 -->
+                    <div class="bg-surface-1 border border-hairline-strong rounded-2xl p-6 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                        <div class="absolute -right-6 -top-6 text-6xl opacity-10 group-hover:scale-110 transition-transform">🧘‍♀️</div>
+                        <h3 class="text-lg font-bold text-primary mb-2">۶. WellnessOS</h3>
+                        <p class="text-sm text-ink-muted leading-relaxed text-justify">
+                            <strong>پاسپورت سلامت:</strong> پزشک آنلاین فرامرزی، ثبت سوابق پزشکی یکپارچه و دسترسی به باشگاه‌های ورزشی محلی.
+                        </p>
+                    </div>
+
+                    <!-- Node 7 -->
+                    <div class="bg-surface-1 border border-hairline-strong rounded-2xl p-6 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                        <div class="absolute -right-6 -top-6 text-6xl opacity-10 group-hover:scale-110 transition-transform">🤝</div>
+                        <h3 class="text-lg font-bold text-primary mb-2">۷. TribeLayer</h3>
+                        <p class="text-sm text-ink-muted leading-relaxed text-justify">
+                            <strong>لایه اجتماعی اختیاری:</strong> برخلاف هاستل‌ها که تجمع را تحمیل می‌کنند، ارتباطات اینجا بر پایه انتخاب دقیق است. پلتفرم با تحلیل هوشمند، فقط افراد کاملاً هم‌فرکانس را به هم متصل می‌کند تا حریم شخصی در بالاترین سطح حفظ شود.
+                        </p>
+                    </div>
+                    <!-- Node 8 -->
+                    <div class="bg-surface-1 border border-yellow-500/30 rounded-2xl p-6 relative overflow-hidden group hover:border-yellow-500/80 transition-colors shadow-lg shadow-yellow-900/10">
+                        <div class="absolute -right-6 -top-6 text-6xl opacity-10 group-hover:scale-110 transition-transform">🏦</div>
+                        <h3 class="text-lg font-bold text-yellow-400 mb-2">۸. CAP Invest</h3>
+                        <p class="text-sm text-ink-muted leading-relaxed text-justify">
+                            <strong>اشتراکِ سودآور (Yield-Backed Housing):</strong> کاربری که پول خرید خانه (مثلاً ۱۰۰ هزار دلار) دارد اما نمی‌خواهد درگیر احتکار ملک شود، پولش را در صندوق CAP استیک می‌کند. این نقدینگی در اوراق امن دولتی (مثل اوراق ۱۲٪ ارمنستان) سرمایه‌گذاری شده و سود ماهیانه ۱٪ آن، <strong>حق اشتراک زندگی او را صفر می‌کند!</strong> هم اصل پول کاملاً نقد و در دسترس است، هم زندگی رایگان می‌شود.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Advanced Future Nodes -->
+                <h3 class="text-xl font-bold text-violet-400 mb-4 mt-12 border-b border-hairline-strong pb-2">گره‌های پیشرفته (Advanced Future Nodes)</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Node 8 -->
+                    <div class="bg-surface-2/50 border border-violet-500/30 rounded-2xl p-6 relative overflow-hidden">
+                        <div class="text-3xl mb-3">🏛️</div>
+                        <h3 class="text-base font-bold text-violet-300 mb-2">۹. IdentityOS</h3>
+                        <p class="text-xs text-ink-muted leading-relaxed text-justify">
+                            <strong>هویت حاکمیتی دیجیتال:</strong> نوماد دیجیتال از دید دولت‌ها موجودیت مبهمی است. این لایه با کمک دیتای لوکیشن کاربر، اقامت مالیاتی او را بهینه محاسبه کرده و با برنامه‌های e-Residency کشورها یکپارچه می‌شود.
+                        </p>
+                    </div>
+
+                    <!-- Node 9 -->
+                    <div class="bg-surface-2/50 border border-violet-500/30 rounded-2xl p-6 relative overflow-hidden">
+                        <div class="text-3xl mb-3">🧬</div>
+                        <h3 class="text-base font-bold text-violet-300 mb-2">۱۰. SoulMatch</h3>
+                        <p class="text-xs text-ink-muted leading-relaxed text-justify">
+                            <strong>موتور همتایابی رفتاری:</strong> ساخت یک "امضای زندگی دیجیتال". این موتور نه تنها همسایگان ایده‌آل پیشنهاد می‌دهد، بلکه شهر بعدی را بر اساس "DNA زندگی" مشترک با سایر افراد موفق پیشنهاد می‌کند.
+                        </p>
+                    </div>
+
+                    <!-- Node 10 -->
+                    <div class="bg-surface-2/50 border border-violet-500/30 rounded-2xl p-6 relative overflow-hidden">
+                        <div class="text-3xl mb-3">🧳</div>
+                        <h3 class="text-base font-bold text-violet-300 mb-2">۱۱. PortableEnv</h3>
+                        <p class="text-xs text-ink-muted leading-relaxed text-justify">
+                            <strong>محیط فیزیکی قابل‌حمل (Fluidity):</strong> یک پروفایل ابری که با IoT خانه جدید متصل می‌شود. فرقی نمی‌کند در بالی باشید یا ایروان؛ با ورود شما، خانه با دمای مطلوب، نور ملایم و موسیقی مورد علاقه‌تان از شما استقبال می‌کند.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. User Stories & Holy Grail -->
+            <section id="user-stories" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">05</span>
+                    <h2 class="text-3xl font-bold text-ink">تجربه کاربری و ویژگی کام‌مقدس (The Holy Grail)</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-emerald-900/50 to-transparent mb-8"></div>
+                
+                <!-- ZeroDay Experience -->
+                <div class="bg-gradient-to-br from-surface-1 to-surface-2 border border-emerald-500/30 rounded-3xl p-8 mb-8 relative overflow-hidden shadow-2xl shadow-emerald-900/10">
+                    <div class="absolute -right-20 -top-20 w-64 h-64 bg-emerald-600/10 rounded-full blur-[80px] pointer-events-none"></div>
+                    <div class="inline-flex items-center gap-2 mb-6 relative z-10">
+                        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 font-bold text-xs rounded-full uppercase tracking-wider">The Holy Grail Feature</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-ink mb-6 relative z-10">تجربه "روز صفر" (ZeroDay Experience)</h3>
+                    <p class="text-sm text-ink-muted mb-6 text-justify leading-relaxed relative z-10 font-medium">
+                        تنها ویژگی جادویی که باعث می‌شود کاربر بگوید: «دیگر هرگز نمی‌توانم به روش سنتی خانه اجاره کنم.» اولین باری در تاریخ بشر که مکان تغییر می‌کند، اما روال زندگی مختل نمی‌شود.
+                    </p>
+                    
+                    <div class="space-y-4 relative z-10 font-mono text-sm">
+                        <div class="flex gap-4 border-b border-hairline pb-4">
+                            <span class="text-emerald-400 font-bold w-16">۱۱:۳۰ شب</span>
+                            <span class="text-ink-muted">آنا از فرودگاه ایروان خارج می‌شود. او سه ماه لیسبون بوده. الان ارمنستان است.</span>
+                        </div>
+                        <div class="flex gap-4 border-b border-hairline pb-4">
+                            <span class="text-emerald-400 font-bold w-16">۱۲:۰۰ شب</span>
+                            <span class="text-ink-muted">ماشین FlowMobility منتظرش است. هیچ مکالمه‌ای لازم نیست.</span>
+                        </div>
+                        <div class="flex gap-4 border-b border-hairline pb-4">
+                            <span class="text-emerald-400 font-bold w-16">۱۲:۴۵ شب</span>
+                            <span class="text-ink-muted">در آپارتمان با اسکن چهره باز می‌شود. دما ۲۲ درجه است (دمای مطلوب آنا). در یخچال: شیر گیاهی و قهوه اتیوپیایی منتظر اوست. سیستم از لیسبون می‌داند صبحانه او چیست.</span>
+                        </div>
+                        <div class="flex gap-4 border-b border-hairline pb-4">
+                            <span class="text-emerald-400 font-bold w-16">۱:۰۰ صبح</span>
+                            <span class="text-ink-muted">پیام موبایل: "نزدیک به زمان تحویل پروژه‌ات هستی. آیا مایل هستی یک دفتر کار خصوصی کاملاً بی‌صدا (Soundproof) با مانیتور اضافه در شعاع ۲۰۰ متری برایت رزرو کنم تا فردا با تمرکز ۱۰۰٪ کار کنی؟"</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <span class="text-emerald-400 font-bold w-16">صبح ۸:۴۵</span>
+                            <span class="text-ink-muted">قهوه‌ساز خودکار روشن می‌شود، لامپ‌ها آرام روشن شده و موسیقی کاری او پخش می‌شود. آنا احساس می‌کند هرگز لیسبون را ترک نکرده است.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Business Plan & Flywheel -->
+            <section id="business-plan" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">06</span>
+                    <h2 class="text-3xl font-bold text-ink">اقتصاد واحد و جریان مالی (Unit Economics)</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-hairline to-transparent mb-8"></div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <!-- Revenue Cross-Subsidization -->
+                    <div class="bg-surface-1 rounded-2xl p-6 border border-hairline">
+                        <h3 class="text-xl font-bold text-ink mb-6 border-b border-hairline pb-3">مدل سوبسید متقاطع (مدل آمازون)</h3>
+                        <ul class="space-y-4 text-sm text-ink-muted">
+                            <li class="flex items-start gap-2">
+                                <span class="text-primary mt-1">🔹</span>
+                                <div><strong>HousingCore (حاشیه سود پایین):</strong> مسکن برای جذب نوماد و تولید رفتار مالی استفاده می‌شود. همانند خرده‌فروشی آمازون.</div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-primary mt-1">🔹</span>
+                                <div><strong>TrustLedger (حاشیه سود بالا):</strong> سرویس‌های وام‌دهی و اعتباری که بر پایه دیتای مسکن امکان‌پذیر شده‌اند، سود اصلی پلتفرم را می‌سازند (همانند سیستم AWS).</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Unit Economics MVP -->
+                    <div class="bg-surface-1 rounded-2xl p-6 border border-hairline">
+                        <h3 class="text-xl font-bold text-ink mb-6 border-b border-hairline pb-3">اقتصاد واحدِ یک آپارتمان (MVP ماه اول)</h3>
+                        <div class="text-sm text-ink-muted space-y-3 font-mono">
+                            <div class="flex justify-between pb-2 border-b border-hairline-strong">
+                                <span>درآمد ناخالص (اشغال ۷۵٪ - ۲۲ روز)</span>
+                                <span class="text-emerald-400">+۸۰۵ دلار</span>
+                            </div>
+                            <div class="flex justify-between pb-2 border-b border-hairline-strong">
+                                <span>هزینه‌های ثابت (اجاره به مالک + نت + نظافت)</span>
+                                <span class="text-red-400">-۵۱۵ دلار</span>
+                            </div>
+                            <div class="flex justify-between pb-2 border-b border-hairline-strong">
+                                <span>هزینه‌های متغیر (کیت خوش‌آمد، بازاریابی)</span>
+                                <span class="text-red-400">-۶۵ دلار</span>
+                            </div>
+                            <div class="flex justify-between pt-2">
+                                <strong class="text-ink">سود خالص (یک واحد در ماه)</strong>
+                                <strong class="text-emerald-400">+۲۲۵ دلار (۲۸٪)</strong>
+                            </div>
+                            <p class="text-xs text-ink-subtle mt-4 leading-relaxed font-sans">
+                                * برای مدیریت Gap Days (روزهای خالی)، تخفیف‌های ۳۰٪ به عنوان Flash Deal در جامعه تلگرامی ارائه می‌شود تا اشغال به ۸۵٪ (سود ۳۸۳ دلار) برسد. مقیاس‌پذیری ۵۰ واحد مساوی با ۱۵ هزار دلار سود خالص ماهانه.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. GTM Strategy -->
+            <section id="gtm" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">07</span>
+                    <h2 class="text-3xl font-bold text-ink">استراتژی ورود به بازار و حل «شروع سرد» (GTM)</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-orange-900/50 to-transparent mb-8"></div>
+
+                <p class="text-ink-muted mb-8 text-justify leading-relaxed">
+                    یک بازار سه‌طرفه درگیر مشکل <strong>شروع سرد (Cold Start Problem)</strong> است. مالک خانه نمی‌آید چون مشتری نیست؛ مشتری نمی‌آید چون خانه نیست. استراتژی زیر برای راه‌اندازی با حداقل بودجه طراحی شده است:
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <!-- Supply Hacks -->
+                    <div class="bg-surface-2 border border-orange-500/20 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold text-orange-400 mb-4 flex items-center gap-2"><span class="text-2xl">🏗️</span> هک چریکی عرضه (تامین ملک)</h3>
+                        <ul class="space-y-4 text-sm text-ink-muted">
+                            <li class="border-b border-hairline-strong pb-4">
+                                <strong class="text-ink block mb-1">۱. اثر سنگ اول (مدیران ملک)</strong>
+                                مذاکره با شرکت‌های مدیریت ملک محلی به جای مالکان فردی. تضمین اجاره ماهانه در ازای ۱۵٪ تخفیف قیمت عمده (Bulk). کسب ۲۵ واحد با ۳ جلسه مذاکره.
+                            </li>
+                            <li class="border-b border-hairline-strong pb-4">
+                                <strong class="text-ink block mb-1">۲. آربیتراژ هتل‌های بوتیک</strong>
+                                اجاره بلوکی ۱۰ اتاق از هتل‌های بوتیک در ماه‌های کم‌تقاضا با ۵۰٪ تخفیف. تبدیل آن‌ها به "NomadReady" بدون نیاز به سرمایه.
+                            </li>
+                            <li>
+                                <strong class="text-ink block mb-1">۳. برنامه Nomad Pioneer</strong>
+                                ارائه تخفیف سنگین به ۱۰ نوماد در ازای اینکه خودشان خانه‌های خوب را کشف کرده و به شبکه متصل کنند.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Demand Hacks -->
+                    <div class="bg-surface-2 border border-orange-500/20 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold text-orange-400 mb-4 flex items-center gap-2"><span class="text-2xl">🚀</span> تولید تقاضا (جذب نوماد)</h3>
+                        <ul class="space-y-4 text-sm text-ink-muted">
+                            <li class="border-b border-hairline-strong pb-4">
+                                <strong class="text-ink block mb-1">۱. نفوذ به جوامع (Hostile Takeover)</strong>
+                                انتشار رایگان "گزارش جامع ایروان ۲۰۲۵" در Nomad List، و دعوت از ۳ نوماد اینفلوئنسر با اقامت رایگان به جای هزینه تبلیغات.
+                            </li>
+                            <li class="border-b border-hairline-strong pb-4">
+                                <strong class="text-ink block mb-1">۲. فروش B2B از در پشتی</strong>
+                                هدف‌گیری مدیران HR شرکت‌های Remote. پرداخت ۵۰۰ دلار حق مسکن توسط شرکت به عنوان Benefit.
+                            </li>
+                            <li>
+                                <strong class="text-ink block mb-1">۳. جعبه سیاه ارمنی (ناسیونالیسم دیاسپورا)</strong>
+                                کمپین برای کارمندان Remote ارمنی در سراسر جهان: «۳ ماه در ایروان کار کن و به اقتصاد کشور کمک کن.»
+                            </li>
+                            <li class="border-t border-hairline-strong pt-4 mt-4">
+                                <strong class="text-ink block mb-1">۴. بازاریابی مبتنی بر محصول (Engineering-as-Marketing)</strong>
+                                چون فاوندر برنامه‌نویس است، ساخت ابزارهای رایگان جانبی (مثل "محاسبه‌گر هزینه زندگی نومادها در ایروان") و انتشار در Product Hunt و Hacker News، ترافیک ارگانیک و هدفمندی را بدون هزینه تبلیغات جذب می‌کند.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                                <!-- MVP Engineering Advantage -->
+                <div class="bg-surface-1 rounded-2xl p-6 border border-hairline">
+                    <h3 class="text-xl font-bold text-ink mb-4">عملیات Code-First (مزیت ناعادلانه برنامه‌نویس)</h3>
+                    <p class="text-sm text-ink-muted mb-6 text-justify">
+                        قانون استارتاپیِ «کد ننویس و دستی شروع کن» برای تیم‌های تجاری است. برای یک فاوندر برنامه‌نویس، <strong>ساختن نرم‌افزار ارزان‌ترین و برنده‌ترین کار است!</strong> به جای عملیات دستی خسته‌کننده که انگیزه را می‌کشد، ما یک هسته نرم‌افزاری کاملاً خودکار می‌سازیم تا پلتفرم از روز اول بی‌نیاز از نیروی انسانی کار کند.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-red-400 font-bold mb-3 border-b border-red-500/20 pb-2">❌ تله‌های کمال‌گرایی (در MVP نسازید)</h4>
+                            <ul class="text-xs text-ink-muted space-y-2">
+                                <li>- هوش مصنوعی پیش‌بینی مقصد (Lumen AI).</li>
+                                <li>- زیرساخت یکپارچه با دستگاه‌های IoT خانه.</li>
+                                <li>- توکنایز کردن دارایی‌ها روی بلاکچین.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-emerald-400 font-bold mb-3 border-b border-emerald-500/20 pb-2">✅ معماری نرم‌افزار روز اول (باید کد بزنیم)</h4>
+                            <ul class="text-xs text-ink-muted space-y-2">
+                                <li>- <strong>هسته هویتی (Auth):</strong> سیستم لاگین و پروفایل‌سازی.</li>
+                                <li>- <strong>موتور رزرو (Booking):</strong> انتخاب تاریخ و کسر پول خودکار.</li>
+                                <li>- <strong>CAP Invest (کیف پول):</strong> جذب سرمایه سرمایه‌گذاران و اعطای وام خرد.</li>
+                                <li>- <strong>داشبورد ادمین (Admin):</strong> مدیریت مالی املاک و سیستم اتوماسیون وظایف.</li>
+                            </ul>
+                            <div class="mt-5 p-4 bg-canvas rounded-lg border border-hairline-strong">
+                                <strong class="text-primary text-xs block mb-2">استک فنی قدرتمند و رایگان برای روز اول:</strong>
+                                <p class="text-xs text-ink-subtle font-mono">Frontend: Next.js<br>Backend/DB: Supabase<br>Payments: Stripe<br>Deployment: Vercel</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Solo-Founder Execution Plan -->
+            <section id="solo-founder" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">08</span>
+                    <h2 class="text-3xl font-bold text-ink">برنامه اجرایی واقع‌بینانه (Solo-Founder Plan)</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-hairline to-transparent mb-8"></div>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <!-- Reality Check -->
+                    <div class="bg-surface-1 border border-hairline rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-ink mb-4 border-b border-hairline pb-2">واقعیت موقعیت شما</h3>
+                        <div class="flex gap-8">
+                            <ul class="text-sm text-ink-subtle space-y-2">
+                                <li class="text-emerald-400 font-bold mb-1">✅ شما دارید:</li>
+                                <li>مهارت فنی (کدنویسی)</li>
+                                <li>وقت آزاد</li>
+                                <li>آشنایی با شبکه AVC</li>
+                            </ul>
+                            <ul class="text-sm text-ink-subtle space-y-2">
+                                <li class="text-red-400 font-bold mb-1">❌ شما ندارید:</li>
+                                <li>سرمایه اولیه</li>
+                                <li>تیم فروش و عملیات</li>
+                                <li>مشتری پرداخت‌کننده</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Co-founder -->
+                    <div class="bg-surface-1 border border-primary/20 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-primary mb-2">قطعه گمشده: هم‌بنیان‌گذار (Co-founder)</h3>
+                        <p class="text-sm text-ink-muted mb-3 leading-relaxed text-justify">
+                            بزرگترین ریسک پروژه تنهایی شماست، نه کد. شما به فردی در ایروان نیاز دارید که با صاحبان ملک مذاکره کند و عملیات را پیش ببرد.
+                        </p>
+                        <ul class="text-xs text-ink-subtle space-y-1">
+                            <li><strong>- کجا پیدایش کنید؟</strong> شبکه AVC، دانشجویان بیزینس دانشگاه AUA یا YSU.</li>
+                            <li><strong>- پیشنهاد مالی:</strong> به جای حقوق، ۲۰ تا ۳۰٪ سهام (Equity).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 0 -->
+                <div class="bg-surface-2 border border-hairline-strong rounded-2xl p-6 mb-8">
+                    <h3 class="text-xl font-bold text-ink mb-3">فاز صفر (هفته ۱ تا ۴): اعتبارسنجی بدون کد</h3>
+                    <p class="text-sm text-ink-muted mb-4 text-justify">قبل از نوشتن معماری روز اول، باید ثابت کنید ۵ نفر حاضرند پول بدهند. اگر کسی پول نداد، ایده باید تنظیم شود.</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-surface-1 p-4 rounded-lg border border-hairline">
+                            <strong class="text-ink block mb-2 text-sm">۱. لندینگ Notion</strong>
+                            <p class="text-xs text-ink-subtle text-justify">ساخت صفحه ساده با قیمت پکیج (۸۰۰ تا ۱۲۰۰ دلار) و فرم Typeform.</p>
+                        </div>
+                        <div class="bg-surface-1 p-4 rounded-lg border border-hairline">
+                            <strong class="text-ink block mb-2 text-sm">۲. جامعه تلگرامی</strong>
+                            <p class="text-xs text-ink-subtle text-justify">گروه "Yerevan Nomads" برای ارائه ارزش و محتوای مفید بدون تبلیغ مستقیم.</p>
+                        </div>
+                        <div class="bg-surface-1 p-4 rounded-lg border border-hairline">
+                            <strong class="text-ink block mb-2 text-sm">۳. پیام مستقیم (DM)</strong>
+                            <p class="text-xs text-ink-subtle text-justify">مذاکره با ۱۰ نوماد در Reddit برای گرفتن اولین تاییدیه پولی.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="bg-surface-1 border border-hairline rounded-2xl p-6 mb-20">
+                    <h3 class="text-lg font-bold text-ink mb-4">نقشه راه هفته‌به‌هفته (۶ ماه اول)</h3>
+                    <div class="text-sm text-ink-muted font-mono leading-relaxed space-y-3 border-r border-hairline-strong pr-4 mr-2">
+                        <p><strong class="text-primary">هفته ۱-۲:</strong> لندینگ Notion، گروه تلگرام، یافتن Co-founder.</p>
+                        <p><strong class="text-primary">هفته ۳-۴:</strong> مذاکره با ۵ مالک (OLX یا AVC)، جذب مشتری با واتس‌اپ.</p>
+                        <p><strong class="text-primary">ماه ۲:</strong> رسیدن به ۳ خانه و ۳ مشتری (سودآوری واقعی).</p>
+                        <p><strong class="text-emerald-400">ماه ۳ (ورود به فاز فنی):</strong> اگر ۵ مشتری داشتید -&gt; شروع کدنویسی پلتفرم روز اول.</p>
+                        <p><strong class="text-primary">ماه ۴-۵:</strong> لانچ نرم‌افزار، فعال‌سازی Stripe، رسیدن به ۱۰ خانه (۳۰۰۰$ سود ماهانه).</p>
+                        <p><strong class="text-primary">ماه ۶:</strong> لانچ در Product Hunt یا پیووت (Pivot).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Macro Business Models -->
+            <section id="macro-biz" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">09</span>
+                    <h2 class="text-3xl font-bold text-ink">مدل‌های کلان: فروش B2B و B2G</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-hairline to-transparent mb-8"></div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-surface-1 border border-hairline rounded-xl p-6">
+                        <div class="text-3xl mb-3">🏢</div>
+                        <h3 class="text-lg font-bold text-ink mb-2">مدل B2B (فروش به شرکت‌های Tech)</h3>
+                        <p class="text-sm text-ink-muted text-justify leading-relaxed">
+                            به جای فروش تکی، یک «داشبورد مدیریت تیم توزیع‌شده» به شرکتهای Remote می‌فروشیم. HR ماهانه بودجه ثابتی پرداخت می‌کند تا کارمندانش در زیرساخت CAP زندگی کنند.
+                        </p>
+                    </div>
+
+                    <div class="bg-surface-1 border border-hairline rounded-xl p-6">
+                        <div class="text-3xl mb-3">🏛️</div>
+                        <h3 class="text-lg font-bold text-ink mb-2">مدل B2G (فروش به دولت‌ها)</h3>
+                        <p class="text-sm text-ink-muted text-justify leading-relaxed">
+                            CAP می‌تواند «بسته ملی جذب استعداد» را به دولت‌ها بفروشد: ما سالانه ۵۰۰ نوماد می‌آوریم که هرکدام ۲۵۰۰ دلار به اقتصاد تزریق می‌کنند، و به دولت داده‌های تجمیعی برای سیاست‌گذاری می‌دهیم.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. Roadmap & Risks -->
+            <section id="roadmap" class="scroll-mt-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">10</span>
+                    <h2 class="text-3xl font-bold text-ink">مدیریت ریسک و نقشه راه استراتژیک</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-hairline to-transparent mb-10"></div>
+                
+                <!-- Black Swan Risk -->
+                <div class="bg-surface-2 border border-red-500/30 rounded-xl p-6 mb-12">
+                    <h3 class="text-lg font-bold text-red-400 mb-3 flex items-center gap-2">☠️ ریسک قوی سیاه (Black Swan)</h3>
+                    <p class="text-sm text-ink-muted mb-4 text-justify leading-relaxed">
+                        چه می‌شود اگر همزمان قوانین اجاره کوتاه‌مدت ممنوع شود، رکود اقتصادی رخ دهد و داده‌ها هک شود؟ برای جلوگیری از نابودی کل پلتفرم، باید سه سپر دفاعی داشته باشیم:
+                    </p>
+                    <ul class="text-xs text-ink-muted space-y-2">
+                        <li><strong>۱. معماری فدرال داده‌ها:</strong> داده‌های هویتی NFI در کلاسترهای مستقل توزیع می‌شود تا هک کل شبکه غیرممکن شود.</li>
+                        <li><strong>۲. سیستم هشدار قانون‌گذاری:</strong> رصد قوانین مسکن شهرها از ۶ ماه قبل برای شیفت کردن عرضه.</li>
+                        <li><strong>۳. کمربند ایمنی B2B:</strong> داشتن حداقل ۳۰٪ کاربر از طریق قراردادهای سالانه شرکت‌های بزرگ.</li>
+                    </ul>
+                </div>
+
+                <p class="text-ink-muted mb-8 text-justify leading-relaxed">
+                    اکوسیستم تار عنکبوتی باید به تدریج و با استراتژی زیر تنیده شود:
+                </p>
+
+                <div class="relative border-r border-hairline-strong ml-4 lg:ml-0 lg:mr-4 pr-8 lg:pr-10 space-y-8">
+                    <div class="relative">
+                        <span class="absolute -right-[45px] lg:-right-[57px] top-1.5 w-6 h-6 rounded-full bg-canvas border-2 border-hairline-strong flex items-center justify-center z-10"></span>
+                        <div class="bg-surface-1 border border-hairline rounded-xl p-5">
+                            <h3 class="text-base font-bold text-ink mb-2">فاز ۱: The Anchor (هسته اولیه)</h3>
+                            <p class="text-ink-muted text-xs leading-relaxed">پیاده‌سازی HousingCore + WorkOS در یک شهر با استراتژی جادوگر شهر آز.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute -right-[45px] lg:-right-[57px] top-1.5 w-6 h-6 rounded-full bg-canvas border-2 border-hairline-strong flex items-center justify-center z-10"></span>
+                        <div class="bg-surface-1 border border-hairline rounded-xl p-5">
+                            <h3 class="text-base font-bold text-ink mb-2">فاز ۲: The Lock (قفل کردن کاربر)</h3>
+                            <p class="text-ink-muted text-xs leading-relaxed">راه‌اندازی TrustLedger و محاسبه امتیاز NFI. ارائه خانه‌های بدون ودیعه به کاربران وفادار.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute -right-[45px] lg:-right-[57px] top-1.5 w-6 h-6 rounded-full bg-canvas border-2 border-hairline-strong flex items-center justify-center z-10"></span>
+                        <div class="bg-surface-1 border border-hairline rounded-xl p-5">
+                            <h3 class="text-base font-bold text-ink mb-2">فاز ۳: The Flywheel (چرخش چرخ‌دنده)</h3>
+                            <p class="text-ink-muted text-xs leading-relaxed">افزوده شدن FlowMobility و TribeLayer. جابجایی تبدیل به یک رویداد شیرین می‌شود.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute -right-[45px] lg:-right-[57px] top-1.5 w-6 h-6 rounded-full bg-canvas border-2 border-hairline-strong flex items-center justify-center z-10"></span>
+                        <div class="bg-surface-1 border border-hairline rounded-xl p-5">
+                            <h3 class="text-base font-bold text-ink mb-2">فاز ۴: The Margin Engine (موتور سودآوری)</h3>
+                            <p class="text-ink-muted text-xs leading-relaxed">ورود WellnessOS و NourishNet. ارائه خدمات بیمه و مالی پر‌سود بر پایه داده‌های سبک زندگی کاربر.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. Web3 & Lumen AI Endgame -->
+            <section id="web3-endgame" class="scroll-mt-12 pb-20 mt-20">
+                <div class="bg-surface-1 border border-violet-500/30 rounded-3xl p-8 lg:p-12 relative overflow-hidden shadow-2xl shadow-violet-900/10">
+                    <div class="absolute -right-20 -top-20 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none"></div>
+                    
+                    <div class="inline-flex items-center gap-2 mb-6 relative z-10">
+                        <span class="px-3 py-1 bg-violet-500/20 text-violet-300 font-bold text-xs rounded-full uppercase tracking-wider">Phase 5: The Protocol</span>
+                    </div>
+                    
+                    <h2 class="text-4xl font-black text-ink mb-6 relative z-10">چشم‌انداز نهایی: هوش مصنوعی محیطی و Web3</h2>
+                    
+                    <p class="text-lg text-ink-muted mb-8 text-justify leading-relaxed relative z-10">
+                        زمانی که پلتفرم به مقیاس بالا (Scale) رسید، از یک «نرم‌افزار متمرکز» فراتر رفته و تبدیل به یک <strong>پروتکل و زیرساخت</strong> می‌شود. کاربر دیگر هزینه خانه نمی‌دهد، بلکه برای مدیریت کیفیت زندگی‌اش اشتراک تهیه می‌کند.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6 relative z-10 mb-8">
+                        <div class="bg-surface-2 rounded-2xl p-6 border border-violet-500/20 hover:border-violet-500/50 transition-colors">
+                            <div class="text-3xl mb-4">🧠</div>
+                            <h4 class="font-bold text-violet-300 mb-2">هوش مصنوعی محیطی (Lumen AI)</h4>
+                            <p class="text-sm text-ink-muted text-justify leading-relaxed">
+                                یک هوش مصنوعی که می‌فهمد بهره‌وری کاربر در هوای مرطوب افت می‌کند، پس قبل از اتمام قرارداد، خانه‌ای در کشوری خشک‌تر پیشنهاد می‌دهد! مسکن و رفاه صرفاً متغیرهایی هستند که این AI تنظیم می‌کند.
+                            </p>
+                        </div>
+
+                        <div class="bg-surface-2 rounded-2xl p-6 border border-violet-500/20 hover:border-violet-500/50 transition-colors">
+                            <div class="text-3xl mb-4">🔐</div>
+                            <h4 class="font-bold text-violet-300 mb-2">اعتبارنامه‌های غیرمتمرکز (Reputation Protocol)</h4>
+                            <p class="text-sm text-ink-muted text-justify leading-relaxed">
+                                امتیاز مالی نومد (NFI) از سرورها خارج شده و به شکل یک توکن رمزنگاری‌شده (Zero-Knowledge Proof) در کیف پول او ذخیره می‌شود. او می‌تواند از این اعتبار جهانی برای دریافت وام استفاده کند.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6 relative z-10">
+                        <div class="bg-surface-2 rounded-2xl p-6 border border-violet-500/20">
+                            <h4 class="font-bold text-violet-300 mb-2 text-sm">توکنیزه کردن املاک (RWA)</h4>
+                            <p class="text-xs text-ink-muted text-justify leading-relaxed">سرمایه‌گذاران خرد در سراسر جهان مالک کسری از اکوسیستم می‌شوند.</p>
+                        </div>
+                        <div class="bg-surface-2 rounded-2xl p-6 border border-violet-500/20">
+                            <h4 class="font-bold text-violet-300 mb-2 text-sm">تراکنش‌های Streaming</h4>
+                            <p class="text-xs text-ink-muted text-justify leading-relaxed">اجاره‌ها ثانیه‌به‌ثانیه توسط قراردادهای هوشمند کسر و توزیع می‌شود.</p>
+                        </div>
+                        <div class="bg-surface-2 rounded-2xl p-6 border border-violet-500/20">
+                            <h4 class="font-bold text-violet-300 mb-2 text-sm">حاکمیت DAO</h4>
+                            <p class="text-xs text-ink-muted text-justify leading-relaxed">پلتفرم تبدیل به یک سازمان خودمختار برای انتخاب مقاصد بعدی می‌شود.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+
+            <!-- 12. Technical Blueprint (PoC) -->
+            <section id="technical-blueprint" class="scroll-mt-12 pb-20">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-primary font-mono text-sm">12</span>
+                    <h2 class="text-3xl font-bold text-ink">نقشه معماری فنی (Technical Blueprint for PoC)</h2>
+                </div>
+                <div class="w-full h-px bg-gradient-to-r from-hairline to-transparent mb-8"></div>
+                
+                <p class="text-lg text-ink-muted mb-8 text-justify leading-relaxed">
+                    برای تبدیل این ایده به نرم‌افزار، ما ساختار را بر اساس <strong>۴ قدم برنامه‌نویسی متوالی</strong> طراحی می‌کنیم. این نقشه، راهنمای ما برای ساخت حداقل محصول فنی (Proof of Concept) و اثبات چرخه مسکن و سرمایه‌گذاری (CAP Invest) خواهد بود.
+                </p>
+
+                <!-- Database Schema -->
+                <div class="bg-surface-1 border border-hairline rounded-2xl p-6 mb-8">
+                    <h3 class="text-xl font-bold text-primary mb-4 border-b border-hairline pb-3">۱. ساختار دیتابیس (Core Entities در Supabase)</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-surface-2 p-4 rounded-xl border border-hairline-strong">
+                            <strong class="text-ink block mb-2 text-sm">User (کاربران)</strong>
+                            <ul class="text-xs text-ink-subtle space-y-1 font-mono">
+                                <li>id (UUID)</li>
+                                <li>role (Nomad, Investor, Admin)</li>
+                                <li>kyc_status</li>
+                                <li>nfi_score (اعتبار)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-surface-2 p-4 rounded-xl border border-hairline-strong">
+                            <strong class="text-ink block mb-2 text-sm">Property (املاک)</strong>
+                            <ul class="text-xs text-ink-subtle space-y-1 font-mono">
+                                <li>id (UUID)</li>
+                                <li>name, location</li>
+                                <li>monthly_cost</li>
+                                <li>status (Available...)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-surface-2 p-4 rounded-xl border border-hairline-strong">
+                            <strong class="text-ink block mb-2 text-sm">Booking (رزروها)</strong>
+                            <ul class="text-xs text-ink-subtle space-y-1 font-mono">
+                                <li>id (UUID)</li>
+                                <li>user_id, property_id</li>
+                                <li>start_date, end_date</li>
+                                <li>status (Active...)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-surface-2 p-4 rounded-xl border border-yellow-500/30">
+                            <strong class="text-yellow-400 block mb-2 text-sm">Vault_Stake (صندوق)</strong>
+                            <ul class="text-xs text-ink-subtle space-y-1 font-mono">
+                                <li>id (UUID)</li>
+                                <li>investor_id</li>
+                                <li>amount_staked</li>
+                                <li>monthly_yield</li>
+                            </ul>
+                        </div>
+                        <div class="bg-surface-2 p-4 rounded-xl border border-indigo-500/30">
+                            <strong class="text-indigo-400 block mb-2 text-sm">Service_Request (خدمات)</strong>
+                            <ul class="text-xs text-ink-subtle space-y-1 font-mono">
+                                <li>id (UUID)</li>
+                                <li>booking_id, type (Food...)</li>
+                                <li>status (Pending, Done)</li>
+                                <li>vendor_id</li>
+                            </ul>
+                        </div>
+                        <div class="bg-surface-2 p-4 rounded-xl border border-indigo-500/30">
+                            <strong class="text-indigo-400 block mb-2 text-sm">Vendor_Partner (پیمانکاران)</strong>
+                            <ul class="text-xs text-ink-subtle space-y-1 font-mono">
+                                <li>id (UUID)</li>
+                                <li>service_type</li>
+                                <li>api_webhook_url</li>
+                                <li>auto_dispatch</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Execution Steps -->
+                <div class="space-y-6">
+                    <div class="bg-surface-1 border border-hairline rounded-2xl p-6 flex gap-6">
+                        <div class="w-12 h-12 rounded-full bg-surface-2 border border-hairline-strong flex items-center justify-center font-bold text-ink shrink-0">۱</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-ink mb-2">قدم اول: زیرساخت هویتی و پنل کاربری (Auth & Shell)</h4>
+                            <p class="text-sm text-ink-subtle mb-3 leading-relaxed">راه‌اندازی پروژه با Next.js + Tailwind. اتصال به Supabase برای ثبت‌نام و لاگین. پیاده‌سازی تشخیص Role (آیا کاربر Nomad است یا Investor؟) و هدایت به داشبورد اختصاصی هر کدام.</p>
+                            <p class="text-xs text-primary font-mono">Tasks: Supabase Auth, Next.js App Router, Role-based Layouts.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-1 border border-hairline rounded-2xl p-6 flex gap-6">
+                        <div class="w-12 h-12 rounded-full bg-surface-2 border border-hairline-strong flex items-center justify-center font-bold text-ink shrink-0">۲</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-ink mb-2">قدم دوم: موتور مسکن و رزرو (HousingCore UI)</h4>
+                            <p class="text-sm text-ink-subtle mb-3 leading-relaxed">نمایش لیست خانه‌ها در داشبورد نوماد. امکان انتخاب یک خانه، تعیین بازه زمانی اقامت و ثبت درخواست. ساخت پنل ادمین برای دیدن درخواست‌های ثبت‌شده و مدیریت وضعیت املاک.</p>
+                            <p class="text-xs text-primary font-mono">Tasks: Properties CRUD, Booking State Machine, Admin Table.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-1 border border-hairline rounded-2xl p-6 flex gap-6 relative overflow-hidden">
+                        <div class="absolute right-0 top-0 w-1.5 h-full bg-yellow-500/50"></div>
+                        <div class="w-12 h-12 rounded-full bg-yellow-500/20 border border-yellow-500/50 flex items-center justify-center font-bold text-yellow-400 shrink-0">۳</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-ink mb-2">قدم سوم: سیستم مالی سرمایه‌گذاران (CAP Invest)</h4>
+                            <p class="text-sm text-ink-subtle mb-3 leading-relaxed">ساخت داشبورد Investor برای استیک کردن سرمایه مجازی. نوشتن منطقی که روزانه سود این سرمایه را محاسبه کرده (Yield Calculation) و در داشبورد کاربر نمایش دهد تا قدرت مدل Yield-Backed Housing اثبات شود.</p>
+                            <p class="text-xs text-primary font-mono">Tasks: Staking UI, Yield Calculation DB Function, Ledger System.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-1 border border-hairline rounded-2xl p-6 flex gap-6">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center font-bold text-emerald-400 shrink-0">۴</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-ink mb-2">قدم چهارم: پرداخت و تکمیل چرخه (Stripe)</h4>
+                            <p class="text-sm text-ink-subtle mb-3 leading-relaxed">اتصال سیستم به درگاه پرداخت برای حق اشتراک. با پرداخت موفق، وضعیت Booking اکتیو شده و درآمدزایی آغاز می‌شود. در نهایت اتصال منطق سود CAP Invest به سیستم پرداخت.</p>
+                            <p class="text-xs text-emerald-400 font-mono">Tasks: Stripe Webhooks, Subscription Billing, Zero-Cost Booking Logic.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-1 border border-hairline rounded-2xl p-6 flex gap-6 relative overflow-hidden">
+                        <div class="absolute right-0 top-0 w-1.5 h-full bg-indigo-500/50"></div>
+                        <div class="w-12 h-12 rounded-full bg-indigo-500/20 border border-indigo-500/50 flex items-center justify-center font-bold text-indigo-400 shrink-0">۵</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-ink mb-2">قدم پنجم: سازمان خودکار و اتوماسیون خدمات (Autonomous Org)</h4>
+                            <p class="text-sm text-ink-subtle mb-3 leading-relaxed">توسعه ماژول‌های FoodOS و CleanOS. کاربر از طریق اپلیکیشن، سرویس نظافت یا غذای روزانه خود را تنظیم می‌کند. سیستم به صورت خودکار (بدون دخالت ادمین) درخواست را از طریق Webhook به سیستم پیمانکاران محلی (Vendor Partners) ارسال کرده و هزینه را با کیف‌پول کاربر تسویه می‌کند.</p>
+                            <p class="text-xs text-indigo-400 font-mono">Tasks: Service Automation Logic, Vendor API Integration, Auto-Dispatch System.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
